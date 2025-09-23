@@ -33,6 +33,8 @@ inline int params::getConflict()
 
 void params::setCybernationLevel(int l)
 {
+    if (l < 0 || l > 20)
+        return;
     this->cybernationLevel = l;
 }
 
