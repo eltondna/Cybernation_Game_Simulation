@@ -1,5 +1,5 @@
-#ifndef STACK_H
-#define STACK_H
+#ifndef _STACK_HPP
+#define _STACK_HPP
 #include <string>
 
 enum STACK_TYPE{
