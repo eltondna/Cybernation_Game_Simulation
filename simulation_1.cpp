@@ -1,8 +1,6 @@
 #include "include.hpp"
 using namespace std;
 
-
-
 /* Interface Declaration */
 void menu(std::vector<stacks> & stkVector, std::vector<STACK_EFFECT> & effVector, int & fbTokenNumber, int & numTurns);
 void run_simulation(std::vector<stacks> stkVector, 
@@ -75,16 +73,22 @@ menu(std::vector<stacks> & stkVector, std::vector<STACK_EFFECT> & fbTokenVector,
 
         string stackTypeStr;
         getline(cin, stackTypeStr);
+        // Testing Purpose
         if (stackTypeStr.size() == 0){
-            // Randomize the stack 
             stkVector = {
                 {STACK_TYPE::STACK_WILD, 1}  , {STACK_TYPE::STACK_WASTE, 2}, {STACK_TYPE::STACK_WILD, 3} , 
                 {STACK_TYPE::STACK_WASTE,4}  , {STACK_TYPE::STACK_WILD, 5} , {STACK_TYPE::STACK_WASTE, 6}, 
                 {STACK_TYPE::STACK_WILD, 7}  , {STACK_TYPE::STACK_WASTE, 8}, {STACK_TYPE::STACK_WILD, 9} , 
                 {STACK_TYPE::STACK_WASTE, 10}, {STACK_TYPE::STACK_DEVA,11}
             };
-        }else {
 
+            fbTokenVector = {
+                {STACK_EFFECT::EFFECT_TURN_WILD}, {STACK_EFFECT::EFFECT_LOSE_CO}, {STACK_EFFECT::EFFECT_TURN_WILD},
+                {STACK_EFFECT::EFFECT_LOSE_CO}, {STACK_EFFECT::EFFECT_TURN_WILD}, {STACK_EFFECT::EFFECT_LOSE_CO},
+                {STACK_EFFECT::EFFECT_TURN_WILD}, {STACK_EFFECT::EFFECT_LOSE_CO}, {STACK_EFFECT::EFFECT_TURN_WILD}, 
+                {STACK_EFFECT::EFFECT_LOSE_CO}, {STACK_EFFECT::EFFECT_TURN_WASTE}
+            };
+        }else {
             int counter = 0;
             for (auto e : stackTypeStr){
                 if (e != ' '){
@@ -100,7 +104,6 @@ menu(std::vector<stacks> & stkVector, std::vector<STACK_EFFECT> & fbTokenVector,
             cout << "Please enter 11 stacks" << endl;
             exit(-1);
         }
-
         // 2. Get Feedback Token amount
         cout << "Please enter the max number of feedback tokens of each kind" << endl;
         (cin >> fbTokenNumber).get();
@@ -121,22 +124,23 @@ void run_simulation(std::vector<stacks> stkVector,
                     int & numTurns, 
                     params & parameters){
     try{
-        // ! 1. Draw feedback Token and solve it
         srand(time(nullptr));
         int counter = 1;
         vector<stacks> stacksChoices;
+        stacksChoices.push_back(stkVector[0]);
+
         while (counter < 12){
-            int size               = fbTokenVector.size();
+            // ! 1. Draw feedback Token and solve it
+            int size    = fbTokenVector.size();
             int pos                = rand() % size;
             auto feedbackToken     = fbTokenVector[pos];
-
             cout << "Draw Feedback Token Effect: " <<  feedbackToken << endl << endl;
-            fbTokenVector.erase( fbTokenVector.begin() + pos);
-
+            fbTokenVector.erase(fbTokenVector.begin() + pos);
             // ! 2. Place feedback token on the stack top
             vector<STACK_EFFECT> newFbVector;
-            int selectedStack   = 1;
 
+            // ! We want to select a random restricted stack  
+            int selectedStack   = 1;
             // Randomize stack choice to be put on
             if (counter == 2){
                 stacksChoices = vector<stacks>(stkVector.begin() + 1, stkVector.begin() + 6);
@@ -144,13 +148,14 @@ void run_simulation(std::vector<stacks> stkVector,
                 stacksChoices = vector<stacks>(stkVector.begin() + 7, stkVector.end());
             }
             selectedStack = randStackSelction(stacksChoices);
-            cout << "Use token on Stack : " << selectedStack << endl;
+            // cout << "Use token on Stack : " << selectedStack  << " And the stack is " << stkVector[selectedStack].toString() << endl;
 
             // ！3. Handle Effect TODO 
             handle_effect(selectedStack, stkVector, parameters, feedbackToken);
             counter++;
         }
     }catch(exception e){
+        cout << "Run Simulation Error" << endl;
         cout << e.what() << endl;
     }
 }
@@ -187,8 +192,12 @@ void TurnWild(int turn, vector<stacks>& stk){
 }
 
 int randStackSelction(vector<stacks> & stk){
-    int pos = rand() % stk.size();
-    int StackPos = stk[pos].getPosition();
-    stk.erase(stk.begin() + pos);
-    return StackPos;
+    if (stk.size() == 1)
+        return 0;
+    else {
+        int pos = rand() % stk.size();
+        int StackPos = stk[pos].getPosition();
+        stk.erase(stk.begin() + pos);
+        return StackPos;
+    }
 }
