@@ -21,11 +21,13 @@ enum STACK_EFFECT{
 
 class stacks{
     private:
+        int             position;
         STACK_TYPE      type;
         STACK_EFFECT    effect;
     public:
-        stacks(STACK_TYPE type);
+        stacks(STACK_TYPE type, int position);
         std::string     toString();
+        int             getPosition();
         STACK_TYPE      getType();
         STACK_EFFECT    getEffect();
         void            setType(STACK_TYPE type);
@@ -62,9 +64,10 @@ inline void stacks::setType(STACK_TYPE type)
     }
 }
 
-inline stacks::stacks(STACK_TYPE type)
+inline stacks::stacks(STACK_TYPE type, int position)
 {
-    this->type = type;
+    this->type     = type;
+    this->position = position;
     switch (this->type){
         case STACK_WILD:
             this->effect = EFFECT_TURN_WILD;
@@ -99,6 +102,11 @@ stacks::toString()
             break;
     }
     return "";   
+}
+
+inline int stacks::getPosition()
+{
+    return this->position;
 }
 
 #endif

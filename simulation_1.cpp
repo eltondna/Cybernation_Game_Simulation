@@ -47,7 +47,7 @@ int main(int argc, char* argv[]){
         cout << "Press any key to simulate again" << endl;
         cout << "Press q to quit" << endl;
 
-        if (cin.get() == 'q')
+        if (tolower(cin.get()) == 'q')
             break;
         cin.get();
     }
@@ -69,16 +69,23 @@ menu(std::vector<stacks> & stkVector, int & fbTokenNumber, int & numTurns){
         getline(cin, stackTypeStr);
         if (stackTypeStr.size() == 0){
             // Randomize the stack 
-            cout << "Random" << endl;
-            exit(0);
-        }
+            stkVector = {
+                {STACK_TYPE::STACK_WILD, 1}  , {STACK_TYPE::STACK_WASTE, 2}, {STACK_TYPE::STACK_WILD, 3} , 
+                {STACK_TYPE::STACK_WASTE,4}  , {STACK_TYPE::STACK_WILD, 5} , {STACK_TYPE::STACK_WASTE, 6}, 
+                {STACK_TYPE::STACK_WILD, 7}  , {STACK_TYPE::STACK_WASTE, 8}, {STACK_TYPE::STACK_WILD, 9} , 
+                {STACK_TYPE::STACK_WASTE, 10}, {STACK_TYPE::STACK_DEVA,11}
+            };
+        }else {
 
-        for (auto e : stackTypeStr){
-            if (e != ' '){
-                int i = e - '0' - 1;
-                stkVector.push_back(stacks(STACK_TYPE(i)));
+            int counter = 0;
+            for (auto e : stackTypeStr){
+                if (e != ' '){
+                    int i = e - '0' - 1;
+                    stkVector.push_back(stacks(STACK_TYPE(i), ++counter));
+                }
             }
         }
+
 
         if (stkVector.size() != 11){
             cout << "Please enter 11 stacks" << endl;
@@ -113,7 +120,8 @@ void run_simulation(std::vector<stacks> stkVector,
             int pos             =  rand() % size;
             auto card = stkVector[pos];
 
-            cout << "Draw " << stkVector[pos].toString() << ", Feedback Token Effect: " << card.getEffect() << endl;
+            cout << "Draw " << card.toString() << " from position " << card.getPosition() << endl;
+            cout << "Feedback Token Effect: " << card.getEffect() << endl << endl;
             stkVector.erase(stkVector.begin() + pos);
         // ! 2. Handle Effect
             handle_effect(parameters, card);
@@ -121,7 +129,6 @@ void run_simulation(std::vector<stacks> stkVector,
     }catch(exception e){
         cout << e.what() << endl;
     }
-
 }
 
 void handle_effect(params & parameter, stacks stk){
