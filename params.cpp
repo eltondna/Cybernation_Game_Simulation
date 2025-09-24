@@ -5,31 +5,6 @@ params::params(int l, int r, int e, int t, int c)
 
 }
 
-inline int params::getCybernationLevel()
-{
-    return cybernationLevel;
-}
-
-inline int params::getHumanRelation()
-{
-    return HumanRelation;
-}
-
-inline int params::getEnvironment()
-{
-    return environmemts;
-}
-
-inline int params::getTechnology()
-{
-    return Technology;
-}
-
-inline int params::getCohesion()
-{
-    return cohesion;
-}
-
 void params::setCybernationLevel(int l)
 {
     if (l < 0 || l > 20)

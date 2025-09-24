@@ -13,13 +13,13 @@ class params{
         params(){};
         params(int l, int r, int e, int t, int c);
         ~params(){};
-
+        
         // Getter
-        inline int getCybernationLevel();
-        inline int getHumanRelation();
-        inline int getEnvironment();
-        inline int getTechnology();
-        inline int getCohesion();
+        inline int getCybernationLevel(){return cybernationLevel;}
+        inline int getHumanRelation(){return HumanRelation;}
+        inline int getEnvironment(){return environmemts;}
+        inline int getTechnology(){return Technology;}
+        inline int getCohesion(){return cohesion;}
         // Setter
         void setCybernationLevel(int l);
         void setHumanRelation(int r);

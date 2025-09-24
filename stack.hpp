@@ -31,7 +31,7 @@ class stacks{
         stacks(STACK_TYPE type, int position);
         std::string     toString();
         
-        void             setPosition(int pos);
+        void            setPosition(int pos);
         int             getPosition();
  
         STACK_TYPE      getType();
