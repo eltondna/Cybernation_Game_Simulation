@@ -1,8 +1,8 @@
 #include "params.hpp"
 
 
-params::params(int l, int r, int e, int s, int c)
-:cybernationLevel(l),relations(r),environmemts(e),steer(s), conflict(c){
+params::params(int l, int r, int e, int t, int c)
+:cybernationLevel(l),HumanRelation(r),environmemts(e),Technology(t), cohesion(c){
 
 }
 
@@ -11,9 +11,9 @@ inline int params::getCybernationLevel()
     return cybernationLevel;
 }
 
-inline int params::getRelation()
+inline int params::getHumanRelation()
 {
-    return relations;
+    return HumanRelation;
 }
 
 inline int params::getEnvironment()
@@ -21,14 +21,14 @@ inline int params::getEnvironment()
     return environmemts;
 }
 
-inline int params::getSteer()
+inline int params::getTechnology()
 {
-    return steer;
+    return Technology;
 }
 
-inline int params::getConflict()
+inline int params::getCohesion()
 {
-    return conflict;
+    return cohesion;
 }
 
 void params::setCybernationLevel(int l)
@@ -38,36 +38,36 @@ void params::setCybernationLevel(int l)
     this->cybernationLevel = l;
 }
 
-void params::setRelation(int r)
+void params::setHumanRelation(int r)
 {
-    if (r > 20 || r < 0 || r > this->conflict)
+    if (r > 20 || r < 0 || r > this->cohesion)
         return;
-    this->relations = r;
+    this->HumanRelation = r;
 }
 
 void params::setEnvironment(int e)
 {
-    if (e > 20 || e < 0 || e > this->conflict)
+    if (e > 20 || e < 0 || e > this->cohesion)
         return;
     this->environmemts = e;
 }
 
-void params::setSteer(int s)
+void params::setTechnology(int t)
 {
-    if (s > 20 || s < 0 || s > this->conflict)
+    if (t > 20 || t < 0 || t > this->cohesion)
         return;
-    this->steer = s;
+    this->Technology = t;
 }
 
-void params::setConflict(int c)
+void params::setCohesion(int c)
 {
     if (c > 20 || c < 0)
         return;
     
-    this->conflict = c;
+    this->cohesion = c;
     // Push back resources
-    this->environmemts = c < this->environmemts ? c : this->environmemts;
-    this->relations    = c < this->relations    ? c : this->relations;
-    this->steer        = c < this->steer        ? c : this->steer;
+    this->environmemts      = c < this->environmemts  ? c : this->environmemts;
+    this->HumanRelation     = c < this->HumanRelation ? c : this->HumanRelation;
+    this->Technology        = c < this->Technology    ? c : this->Technology;
     return;
 }

@@ -9,6 +9,11 @@ enum STACK_TYPE{
     DEVB
 };
 
+enum STACK_EFFECT{
+    TURN_WILD,
+    
+};
+
 
 class stacks{
     private:

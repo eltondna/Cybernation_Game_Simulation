@@ -6,15 +6,26 @@ using namespace std;
 void menu(std::vector<stacks> & stkVector, int & fbTokenNumber, int & numTurns);
 void run_simulation(std::vector<stacks> & stkVector, int & fbTokenNumber, int & numTurns);
 
-
 int main(int argc, char* argv[]){
-    /* Resources */ 
-    vector<stacks> stkVector;
-    int fbTokenNumber = 0;
-    int numTurns      = 0;
+    int flag = 0;
 
-    menu(stkVector, fbTokenNumber, numTurns);
-    run_simulation(stkVector, fbTokenNumber, numTurns);
+    while (!flag){
+        /* Resources */ 
+        vector<stacks> stkVector;
+        int fbTokenNumber = 0;
+        int numTurns      = 0;
+        char result[1024] = {0};
+
+
+        menu(stkVector, fbTokenNumber, numTurns);
+        run_simulation(stkVector, fbTokenNumber, numTurns);
+        cout << "Press any key to simulate again" << endl;
+        cout << "Press q to quit" << endl;
+
+        if (cin.get() == 'q')
+            exit(0);
+        cin.get();
+    }
 
 }
 
@@ -44,6 +55,11 @@ menu(std::vector<stacks> & stkVector, int & fbTokenNumber, int & numTurns){
             }
         }
 
+        if (stkVector.size() != 11){
+            cout << "Please enter 11 stacks" << endl;
+            exit(-1);
+        }
+
         // 2. Get Feedback Token amount
         cout << "Please enter the max number of feedback tokens of each kind" << endl;
         (cin >> fbTokenNumber).get();
@@ -60,5 +76,7 @@ menu(std::vector<stacks> & stkVector, int & fbTokenNumber, int & numTurns){
 
 void 
 run_simulation(std::vector<stacks> & stkVector, int & fbTokenNumber, int & numTurns){
+    // 1. 
+
 
 }

@@ -3,29 +3,29 @@
 
 class params{
     private:
-        int conflict         = 10;
-        int cybernationLevel = 7;
-        int relations        = 7;
+        int cohesion         = 10;
+        int cybernationLevel = 2;
+        int HumanRelation    = 7;
         int environmemts     = 7;
-        int steer            = 7;
+        int Technology       = 7;
     public:
         // Constructor & Destructor
         params();
-        params(int l, int r, int e, int s, int c);
+        params(int l, int r, int e, int t, int c);
         ~params(){};
 
         // Getter
         inline int getCybernationLevel();
-        inline int getRelation();
+        inline int getHumanRelation();
         inline int getEnvironment();
-        inline int getSteer();
-        inline int getConflict();
+        inline int getTechnology();
+        inline int getCohesion();
         // Setter
         void setCybernationLevel(int l);
-        void setRelation(int r);
+        void setHumanRelation(int r);
         void setEnvironment(int e);
-        void setSteer(int s);
-        void setConflict(int c);
+        void setTechnology(int t);
+        void setCohesion(int c);
 
 };
 
