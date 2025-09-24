@@ -1,6 +1,5 @@
 #include "params.hpp"
 
-
 params::params(int l, int r, int e, int t, int c)
 :cybernationLevel(l),HumanRelation(r),environmemts(e),Technology(t), cohesion(c){
 

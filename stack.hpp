@@ -1,7 +1,8 @@
 #ifndef _STACK_HPP
 #define _STACK_HPP
-#include <string>
+#include "include.hpp"
 
+/* ! Tile Type */ 
 enum STACK_TYPE{
     WILD,
     WASTE,
@@ -9,10 +10,13 @@ enum STACK_TYPE{
     DEVB
 };
 
+/* ! Feedback Token Effect */
 enum STACK_EFFECT{
     TURN_WILD,
-    
-};
+    LOSE_CO,
+    TURN_WASTE,
+    SOLVE_DISRUPT
+}; 
 
 
 class stacks{

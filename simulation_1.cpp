@@ -1,6 +1,4 @@
-#include "stack.hpp"
-#include <iostream>
-#include <vector>
+#include "include.hpp"
 using namespace std;
 
 void menu(std::vector<stacks> & stkVector, int & fbTokenNumber, int & numTurns);
