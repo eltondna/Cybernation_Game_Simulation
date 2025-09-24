@@ -1,8 +1,35 @@
 #include "include.hpp"
 using namespace std;
 
+
+
+/* Interface Declaration */
 void menu(std::vector<stacks> & stkVector, int & fbTokenNumber, int & numTurns);
-void run_simulation(std::vector<stacks> & stkVector, int & fbTokenNumber, int & numTurns);
+void run_simulation(std::vector<stacks> stkVector, 
+                    int & fbTokenNumber, 
+                    int & numTurns, 
+                    params & parameters);
+/* ! Handle feedback token effect */
+void handle_effect(params & parameter, stacks stk);
+
+
+/* Debug Function */
+ostream & operator << (ostream & os, STACK_EFFECT effect){
+    switch (effect){
+        case EFFECT_TURN_WILD:
+            return os << "Turn Wild";
+        case EFFECT_LOSE_CO:
+            return os << "Lose Cohesion";
+        case EFFECT_TURN_WASTE:
+            return os << "Turn Waste";
+        case EFFECT_SOLVE_DISRUPT:
+            return os << "Solve Disrupt";
+        default:    
+            return os << "UNKNOWN";
+    }
+}
+
+
 
 int main(int argc, char* argv[]){
     int flag = 0;
@@ -12,16 +39,16 @@ int main(int argc, char* argv[]){
         vector<stacks> stkVector;
         int fbTokenNumber = 0;
         int numTurns      = 0;
-        char result[1024] = {0};
+        params parameters = params();
 
 
         menu(stkVector, fbTokenNumber, numTurns);
-        run_simulation(stkVector, fbTokenNumber, numTurns);
+        run_simulation(stkVector, fbTokenNumber, numTurns, parameters);
         cout << "Press any key to simulate again" << endl;
         cout << "Press q to quit" << endl;
 
         if (cin.get() == 'q')
-            exit(0);
+            break;
         cin.get();
     }
 
@@ -72,9 +99,31 @@ menu(std::vector<stacks> & stkVector, int & fbTokenNumber, int & numTurns){
 }
 
 
-void 
-run_simulation(std::vector<stacks> & stkVector, int & fbTokenNumber, int & numTurns){
-    // 1. 
+void run_simulation(std::vector<stacks> stkVector, 
+                    int & fbTokenNumber, 
+                    int & numTurns, 
+                    params & parameters){
+   
+    try{
+         // ! 1. Draw feedback Token and solve it
+        srand(time(nullptr));
+        int counter = 0;
+        while (counter++ < 11){
+            int size            = stkVector.size();
+            int pos             =  rand() % size;
+            auto card = stkVector[pos];
 
+            cout << "Draw " << stkVector[pos].toString() << ", Feedback Token Effect: " << card.getEffect() << endl;
+            stkVector.erase(stkVector.begin() + pos);
+        // ! 2. Handle Effect
+            handle_effect(parameters, card);
+        }
+    }catch(exception e){
+        cout << e.what() << endl;
+    }
 
+}
+
+void handle_effect(params & parameter, stacks stk){
+    return;
 }

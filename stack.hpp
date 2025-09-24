@@ -1,48 +1,104 @@
 #ifndef _STACK_HPP
 #define _STACK_HPP
-#include "include.hpp"
+#include <string>
 
 /* ! Tile Type */ 
 enum STACK_TYPE{
-    WILD,
-    WASTE,
-    DEVA,
-    DEVB
+    STACK_WILD,
+    STACK_WASTE,
+    STACK_DEVA,
+    STACK_DEVB
 };
 
 /* ! Feedback Token Effect */
 enum STACK_EFFECT{
-    TURN_WILD,
-    LOSE_CO,
-    TURN_WASTE,
-    SOLVE_DISRUPT
+    EFFECT_TURN_WILD,
+    EFFECT_LOSE_CO,
+    EFFECT_TURN_WASTE,
+    EFFECT_SOLVE_DISRUPT
 }; 
 
 
 class stacks{
     private:
-        STACK_TYPE type;
+        STACK_TYPE      type;
+        STACK_EFFECT    effect;
     public:
-        stacks(STACK_TYPE type){this->type = type;}
-        std::string toString(){
-            {
-            switch (this->type){
-                case WILD:
-                    return "WILD";
-                    break;
-                case WASTE:
-                    return "WASTE";
-                    break;
-                case DEVA:
-                    return "DEVA";
-                    break;
-                case DEVB:
-                    return "DEVB";
-                    break;
-            }
-            return "";
-        }
-        }
+        stacks(STACK_TYPE type);
+        std::string     toString();
+        STACK_TYPE      getType();
+        STACK_EFFECT    getEffect();
+        void            setType(STACK_TYPE type);
+        
 };
+
+STACK_TYPE 
+stacks::getType()
+{
+    return this->type;
+}
+
+inline STACK_EFFECT stacks::getEffect()
+{
+    return this->effect;
+}
+
+inline void stacks::setType(STACK_TYPE type)
+{   
+    this->type = type;
+    switch (this->type){
+        case STACK_WILD:
+            this->effect = EFFECT_TURN_WILD;
+            break;
+        case STACK_WASTE:
+            this->effect = EFFECT_LOSE_CO;
+            break;
+        case STACK_DEVA:
+            this->effect = EFFECT_TURN_WASTE;
+            break;
+        case STACK_DEVB:
+            this->effect = EFFECT_SOLVE_DISRUPT;
+            break;
+    }
+}
+
+inline stacks::stacks(STACK_TYPE type)
+{
+    this->type = type;
+    switch (this->type){
+        case STACK_WILD:
+            this->effect = EFFECT_TURN_WILD;
+            break;
+        case STACK_WASTE:
+            this->effect = EFFECT_LOSE_CO;
+            break;
+        case STACK_DEVA:
+            this->effect = EFFECT_TURN_WASTE;
+            break;
+        case STACK_DEVB:
+            this->effect = EFFECT_SOLVE_DISRUPT;
+            break;
+    }
+}
+
+std::string
+stacks::toString()
+{
+    switch (this->type){
+        case STACK_WILD:
+            return "WILD";
+            break;
+        case STACK_WASTE:
+            return "WASTE";
+            break;
+        case STACK_DEVA:
+            return "DEVA";
+            break;
+        case STACK_DEVB:
+            return "DEVB";
+            break;
+    }
+    return "";   
+}
 
 #endif

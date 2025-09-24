@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <ctime> 
 #include "params.hpp"
 
 #endif

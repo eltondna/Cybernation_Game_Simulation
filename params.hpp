@@ -10,7 +10,7 @@ class params{
         int Technology       = 7;
     public:
         // Constructor & Destructor
-        params();
+        params(){};
         params(int l, int r, int e, int t, int c);
         ~params(){};
 
