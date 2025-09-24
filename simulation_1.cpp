@@ -10,7 +10,7 @@ void run_simulation(std::vector<stacks> stkVector,
                     int & numTurns, 
                     params & parameters);
 /* ! Handle feedback token effect */
-void handle_effect(params & parameter, stacks stk);
+void handle_effect(params & parameter, STACK_EFFECT effect);
 
 
 /* Debug Function */
@@ -124,13 +124,17 @@ void run_simulation(std::vector<stacks> stkVector,
             cout << "Feedback Token Effect: " << card.getEffect() << endl << endl;
             stkVector.erase(stkVector.begin() + pos);
         // ! 2. Handle Effect
-            handle_effect(parameters, card);
+            handle_effect(parameters, card.getEffect());
         }
     }catch(exception e){
         cout << e.what() << endl;
     }
 }
 
-void handle_effect(params & parameter, stacks stk){
+void handle_effect(params & parameter, STACK_EFFECT effect){
+    // switch (effect){
+    //     case EFFECT_TURN_WILD:
+
+    // }
     return;
 }
