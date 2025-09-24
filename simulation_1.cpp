@@ -12,8 +12,8 @@ void run_simulation(std::vector<stacks> stkVector,
 
 /* ! Handle feedback token effect */
 void handle_effect(vector<stacks> & stk, params & parameter, STACK_EFFECT effect);
-int  DamageControl(vector<stacks> stk);
-int  Optimisation(vector<stacks> stk);
+int  DamageControl(int turn, vector<stacks> stk);
+int  Optimisation(int turn, vector<stacks> stk);
 
 
 /* Debug Function */
@@ -155,11 +155,11 @@ void handle_effect(vector<stacks> & stk, params & parameter, STACK_EFFECT effect
 }
 
 // ! Turn which STACK into STACK_WASTE 
-int DamageControl(vector<stacks> stk){
+int DamageControl(int turn, vector<stacks> stk){
     return 0;
 }
 
 // ! Turn which STACK into STACK_WILD
-int Optimisation(vector<stacks> stk){
+int Optimisation(int turn, vector<stacks> stk){
     return 0;
 }
