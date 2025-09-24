@@ -9,8 +9,11 @@ void run_simulation(std::vector<stacks> stkVector,
                     int & fbTokenNumber, 
                     int & numTurns, 
                     params & parameters);
+
 /* ! Handle feedback token effect */
-void handle_effect(params & parameter, STACK_EFFECT effect);
+void handle_effect(vector<stacks> & stk, params & parameter, STACK_EFFECT effect);
+int  DamageControl(vector<stacks> stk);
+int  Optimisation(vector<stacks> stk);
 
 
 /* Debug Function */
@@ -124,17 +127,39 @@ void run_simulation(std::vector<stacks> stkVector,
             cout << "Feedback Token Effect: " << card.getEffect() << endl << endl;
             stkVector.erase(stkVector.begin() + pos);
         // ! 2. Handle Effect
-            handle_effect(parameters, card.getEffect());
+            handle_effect(stkVector, parameters, card.getEffect());
+        // ！3. Place feedback token on the stack top
+
         }
     }catch(exception e){
         cout << e.what() << endl;
     }
 }
 
-void handle_effect(params & parameter, STACK_EFFECT effect){
-    // switch (effect){
-    //     case EFFECT_TURN_WILD:
-
-    // }
+void handle_effect(vector<stacks> & stk, params & parameter, STACK_EFFECT effect){
+    switch (effect){
+        case EFFECT_TURN_WILD:
+            int stackPosition = Optimisation(stk);
+            break;
+        case EFFECT_LOSE_CO:
+            int cohesion = parameter.getCohesion();
+            parameter.setCohesion(cohesion - 2);
+            break;
+        case EFFECT_TURN_WASTE:
+            int stackPosition = DamageControl(stk);
+            break;
+        case EFFECT_SOLVE_DISRUPT:
+            break;
+    }
     return;
+}
+
+// ! Turn which STACK into STACK_WASTE 
+int DamageControl(vector<stacks> stk){
+    return 0;
+}
+
+// ! Turn which STACK into STACK_WILD
+int Optimisation(vector<stacks> stk){
+    return 0;
 }
