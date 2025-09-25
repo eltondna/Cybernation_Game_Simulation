@@ -1,6 +1,7 @@
 #ifndef _STACK_HPP
 #define _STACK_HPP
 #include <string>
+#include "feedBackPool.hpp"
 
 /* ! Tile Type */ 
 enum STACK_TYPE{
@@ -11,14 +12,7 @@ enum STACK_TYPE{
     STACK_UNKNOWN
 };
 
-/* ! Feedback Token Effect */
-enum STACK_EFFECT{
-    EFFECT_TURN_WILD,
-    EFFECT_LOSE_CO,
-    EFFECT_TURN_WASTE,
-    EFFECT_SOLVE_DISRUPT,
-    EFFECT_UNKNOWM
-}; 
+
 
 
 
