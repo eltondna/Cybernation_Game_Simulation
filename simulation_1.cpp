@@ -11,14 +11,15 @@ void GamePlayDisplay(const vector<stacks> & stk,
                       const params & currentGameParams,
                       int round);
 
-/* Interface Declaration */
+/* Interface Function */
+
+/* Main simulation Loop */
 void run_simulation(std::vector<stacks> stkVector, 
                     std::vector<STACK_EFFECT> fbTokenVector,
                     int & fbTokenReserve, 
                     int & numTurns, 
                     params & parameters);
 
- /* Helper Function */
 void  createDefaultStack(vector<stacks> & stkVector, vector<STACK_EFFECT> & fbTokenVector);
 void  equipFeedbackToken(vector<stacks> & stkVector, vector<STACK_EFFECT> & fbTokenVector, string input);
 
@@ -35,11 +36,11 @@ ostream & operator <<
         case EFFECT_TURN_WILD:
             return os << "(Wild)";
         case EFFECT_LOSE_CO:
-            return os << "(Cohesion-2)";
+            return os << "(Co-2)";
         case EFFECT_TURN_WASTE:
-            return os << "(Waste)";
+            return os << "(Wast)";
         case EFFECT_SOLVE_DISRUPT:
-            return os << "(Disrupt)";
+            return os << "(Dspt)";
         default:    
             return os << "(UNKNOWN)";
     }
@@ -55,6 +56,7 @@ main(int argc, char* argv[]){
     int fbTokenNumber = 0;
     int numTurns      = 0;
     params parameters = params();
+    
     while (true){
         menu(stkVector, fbTokenVector, fbTokenNumber, numTurns);
         run_simulation(stkVector, fbTokenVector, fbTokenNumber, numTurns, parameters);

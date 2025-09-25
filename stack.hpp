@@ -12,10 +12,6 @@ enum STACK_TYPE{
     STACK_UNKNOWN
 };
 
-
-
-
-
 class stacks{
     private:
         STACK_TYPE      type;
@@ -51,19 +47,19 @@ inline STACK_EFFECT stacks::getEffect()
 {
     switch (this->type){
         case STACK_WILD:
-            return EFFECT_TURN_WILD;
+            return STACK_EFFECT::EFFECT_TURN_WILD;
             break;
         case STACK_WASTE:
-            return EFFECT_LOSE_CO;
+            return STACK_EFFECT::EFFECT_LOSE_CO;
             break;
         case STACK_DEVA:
-            return EFFECT_TURN_WASTE;
+            return STACK_EFFECT::EFFECT_TURN_WASTE;
             break;
         case STACK_DEVB:
-            return EFFECT_SOLVE_DISRUPT;
+            return STACK_EFFECT::EFFECT_SOLVE_DISRUPT;
             break;
         default:
-            return EFFECT_UNKNOWM;
+            return STACK_EFFECT::EFFECT_UNKNOWM;
     }
 }
 

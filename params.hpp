@@ -1,6 +1,15 @@
 #ifndef _PARAMS_HPP
 #define _PARAMS_HPP
 
+enum CYBER_PARAMETER{
+    COHESION,
+    CYBERNATION_LEVEL,
+    HUMAN_RELATION,
+    ENVIRONMENT,
+    TECHNOLOGY
+};
+
+
 class params{
     private:
         int cohesion         = 10;
