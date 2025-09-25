@@ -11,9 +11,6 @@ void GamePlayDisplay(const vector<stacks> & stk,
                       const params & currentGameParams,
                       int round);
 
-
-
-
 /* Interface Declaration */
 void  run_simulation(std::vector<stacks> stkVector, 
                     std::vector<STACK_EFFECT> fbTokenVector,
@@ -179,6 +176,10 @@ void run_simulation(std::vector<stacks> stkVector,
 
 void handle_effect(int stackNo, vector<stacks> & stk, params & parameter, STACK_EFFECT effect){
 
+    // cout << "Effect=" << effect 
+    //  << " | stackNo=" << stackNo 
+    //  << " | stk.size()=" << stk.size() << endl;
+
     int cohesion = 0; 
     switch (effect){
         case EFFECT_TURN_WILD:
@@ -189,7 +190,7 @@ void handle_effect(int stackNo, vector<stacks> & stk, params & parameter, STACK_
             parameter.setCohesion(cohesion - 2);
             break;
         case EFFECT_TURN_WASTE:
-            TurnWild(stackNo, stk);
+            TurnWaste(stackNo, stk);
             break;
         // Need Disrupt Card
         case EFFECT_SOLVE_DISRUPT:
@@ -212,7 +213,7 @@ void TurnWild(int turn, vector<stacks>& stk){
 
 int randStackSelction(vector<stacks> & stk){
     if (stk.size() == 1)
-        return 0;
+        return 1;
     else {
         int pos = rand() % stk.size();
         int StackPos = stk[pos].getPosition();
@@ -236,7 +237,7 @@ void GamePlayDisplay(const vector<stacks> & stk,
         cout << "Stack: " << e.getPosition() << " " << "State: " << e.toString() << endl;
     }
     cout << "----------------------------------------------------------"<< endl;
-    cout << "Total FeedBack Token: " << feedBackTokensVector.size() << endl;
+    cout << "2. TOTAL FEEDBACK TOKEN: " << feedBackTokensVector.size() << endl;
     for (auto e : feedBackTokensVector){
         cout << e << endl;
     }
