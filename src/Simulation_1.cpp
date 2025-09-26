@@ -90,20 +90,33 @@ menu(GameSetting & GameResources){
         }
 
         // 2. Get Feedback Token amount
-        int fbTokenNumber = 0;
+        string tokenNumberInput;
         cout << "Please enter the max number of feedback tokens of each kind" << endl;
-        (cin >> fbTokenNumber).get();
-        GameResources.setPool(feedBackPool(fbTokenNumber));
+        getline(cin, tokenNumberInput);
 
+        try{
+            int fbTokenNumber = stoi(tokenNumberInput);
+            GameResources.setPool(feedBackPool(fbTokenNumber));
+        }catch (const std::exception& e){
+            cerr << "Invalid Max TokenNumber Input" << endl;
+            exit(-1);
+        }
 
         // 3. Get number of simulation turn
-        int numTurns = 0; 
         cout << "Please enter the number of simulation turns" << endl;
-        (cin >> numTurns).get();
-        GameResources.setRound(numTurns);
+        string simulationTurnInput;
+        getline(cin, simulationTurnInput);
 
-    }catch (exception e){
-        cout << "Invalid Input" << endl;
+        try{
+            int numTurns = stoi(simulationTurnInput); 
+            GameResources.setRound(numTurns);
+        }catch (const std::exception& e){
+            cerr << "Invalid Simulation Turn Input" << endl;
+            exit(-1);
+        }
+
+    }catch (const std::exception& e){
+        cerr << "Invalid Input" << endl;
     }
 }
 
@@ -156,8 +169,9 @@ run_simulation(GameSetting & GameResources){
 
             }
             cout << endl << endl;
-            /* Print out round result */
             equipFeedbackToken(stkVector, fbTokenVector, "");
+
+            /* Print out round result */
             GamePlayDisplay(GameResources, TurnCounter);
 
 
@@ -282,8 +296,9 @@ equipFeedbackToken(vector<stacks> & stkVector, vector<STACK_EFFECT> & fbTokenVec
 
 
 void  OutputToJson(int & version, int & currentRound, GameSetting GameResource){
+    static nlohmann::json logArray = nlohmann::json::array();
+
     nlohmann::json jStruct;
-    
     jStruct["version"]    = version;
     for (auto e : GameResource.getstkVector()){
         jStruct["board"]["hex"].push_back({
@@ -303,10 +318,15 @@ void  OutputToJson(int & version, int & currentRound, GameSetting GameResource){
         {"DevB",   GameResource.getPool().getSolveDisruptToken()}
     };
 
-    ofstream jsonFile("visualization.json");
-    if (jsonFile.is_open()){
-        jsonFile << jStruct.dump(4);
-        jsonFile.close();
+    logArray.push_back(jStruct);
+
+    if (currentRound == GameResource.getRound()){
+        ofstream jsonFile("visualization.json");
+        if (jsonFile.is_open()){
+            jsonFile << logArray.dump(4);
+            jsonFile.close();
+        }
+        cout << "JSON written to visualization.json" << endl;
     }
-    cout << "JSON written to visualization.json" << endl;
+
 }
