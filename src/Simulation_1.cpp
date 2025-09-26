@@ -3,7 +3,7 @@ using namespace std;
 
 /* Terminal Display */
 void menu(GameSetting & GameResources);
-void GamePlayDisplay(GameSetting & GameResource);
+void GamePlayDisplay(GameSetting & GameResource, int roundNum);
 
 /* Interface Function */
 
@@ -105,7 +105,7 @@ run_simulation(GameSetting & GameResources){
     
     int round                            = GameResources.getRound();
     vector<stacks> &     stkVector       = GameResources.getstkVector();
-    vector<STACK_EFFECT> fbTokenVector   = GameResources.getFbTokenVector();
+    vector<STACK_EFFECT> & fbTokenVector = GameResources.getFbTokenVector();
     vector<stacks>       stacksChoices;  
 
 
@@ -148,7 +148,7 @@ run_simulation(GameSetting & GameResources){
             cout << endl << endl;
             /* Print out round result */
             equipFeedbackToken(stkVector, fbTokenVector, "");
-            GamePlayDisplay(GameResources);
+            GamePlayDisplay(GameResources, TurnCounter);
 
         }catch(exception e){
             cout << "Run Simulation Error" << endl;
@@ -207,22 +207,28 @@ randStackSelction(vector<stacks> & stk){
     }
 }
 
-void GamePlayDisplay(GameSetting & GameResource ){
+void 
+GamePlayDisplay(GameSetting & GameResource, int roundNum){
     
     // Display Stack Layout:
-    cout << "ROUND " << GameResource.getRound() << endl;
-    cout << "----------------------------------------------------------"<< endl;
-    cout << "1. STACK STATE" << endl;
+    cout << "**********************************************************"<< endl;
+    cout << "*\t\t\tROUND " << roundNum  << "                          *"<< endl;
+    cout << "**********************************************************"<< endl;
+    cout << "\n1. STACK STATE" << endl << endl;
 
     for (auto e : GameResource.getstkVector()){
         cout << "Stack: " << e.getPosition() << " " << "State: " << e.toString() << endl;
     }
-    cout << "----------------------------------------------------------"<< endl;
-    cout << "2. TOTAL FEEDBACK TOKEN: " << GameResource.getFbTokenVector().size() << endl;
+
+
+    cout << "\n2. TOTAL FEEDBACK TOKEN: " << GameResource.getFbTokenVector().size() << endl << endl;
     for (auto e : GameResource.getFbTokenVector()){
-        cout << e << endl;
+        cout << e << " ";
     }
-    cout << "----------------------------------------------------------"<< endl;
+    cout << endl << endl;
+    cout << "**********************************************************"<< endl;
+    cout << "*\t\t\tEnd Round                        *"<< endl;
+    cout << "**********************************************************"<< endl;
 }
 
 // ! TODO: Could Randomize Initial State state
