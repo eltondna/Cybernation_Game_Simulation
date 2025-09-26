@@ -1,0 +1,126 @@
+[
+    {
+        "board": {
+            "hex": [
+                {
+                    "id": 1,
+                    "type": "WILD"
+                },
+                {
+                    "id": 2,
+                    "type": "WILD"
+                },
+                {
+                    "id": 3,
+                    "type": "WILD"
+                },
+                {
+                    "id": 4,
+                    "type": "WILD"
+                },
+                {
+                    "id": 5,
+                    "type": "WILD"
+                },
+                {
+                    "id": 6,
+                    "type": "WASTE"
+                },
+                {
+                    "id": 7,
+                    "type": "WILD"
+                },
+                {
+                    "id": 8,
+                    "type": "WASTE"
+                },
+                {
+                    "id": 9,
+                    "type": "WILD"
+                },
+                {
+                    "id": 10,
+                    "type": "WASTE"
+                },
+                {
+                    "id": 11,
+                    "type": "DEVA"
+                }
+            ]
+        },
+        "game_state": {
+            "bag_total": 48,
+            "current_round": 1,
+            "max_round": 50
+        },
+        "tokens": {
+            "DevA": 12,
+            "DevB": 12,
+            "Wastes": 12,
+            "Wilds": 12
+        },
+        "version": 1
+    },
+    {
+        "board": {
+            "hex": [
+                {
+                    "id": 1,
+                    "type": "WILD"
+                },
+                {
+                    "id": 2,
+                    "type": "WILD"
+                },
+                {
+                    "id": 3,
+                    "type": "WILD"
+                },
+                {
+                    "id": 4,
+                    "type": "WILD"
+                },
+                {
+                    "id": 5,
+                    "type": "WILD"
+                },
+                {
+                    "id": 6,
+                    "type": "WASTE"
+                },
+                {
+                    "id": 7,
+                    "type": "WASTE"
+                },
+                {
+                    "id": 8,
+                    "type": "WASTE"
+                },
+                {
+                    "id": 9,
+                    "type": "WILD"
+                },
+                {
+                    "id": 10,
+                    "type": "WASTE"
+                },
+                {
+                    "id": 11,
+                    "type": "WILD"
+                }
+            ]
+        },
+        "game_state": {
+            "bag_total": 48,
+            "current_round": 2,
+            "max_round": 50
+        },
+        "tokens": {
+            "DevA": 12,
+            "DevB": 12,
+            "Wastes": 12,
+            "Wilds": 12
+        },
+        "version": 1
+    }
+]
