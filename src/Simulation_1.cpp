@@ -1,29 +1,19 @@
-#include "include.hpp"
+#include "../includes/include.hpp"
 using namespace std;
 
-/* Terminal Display*/
-void menu(std::vector<stacks> & stkVector, 
-          std::vector<STACK_EFFECT> & effVector, 
-          int & fbTokenNumber, 
-          int & numTurns);
-void GamePlayDisplay(const vector<stacks> & stk, 
-                      const vector<STACK_EFFECT> &feedBackTokensVector,
-                      const params & currentGameParams,
-                      int round);
+/* Terminal Display */
+void menu(GameSetting & GameResources);
+void GamePlayDisplay(GameSetting & GameResource);
 
 /* Interface Function */
 
 /* Main simulation Loop */
-void run_simulation(std::vector<stacks> stkVector, 
-                    std::vector<STACK_EFFECT> fbTokenVector,
-                    int & fbTokenReserve, 
-                    int & numTurns, 
-                    params & parameters);
+void  run_simulation(GameSetting & GameResources);
 
 void  createDefaultStack(vector<stacks> & stkVector, vector<STACK_EFFECT> & fbTokenVector);
 void  equipFeedbackToken(vector<stacks> & stkVector, vector<STACK_EFFECT> & fbTokenVector, string input);
 
-void  handle_effect(int turn, vector<stacks> & stk, params & parameter, STACK_EFFECT effect);
+void  handle_effect(int stackNo, GameSetting & GameResources, STACK_EFFECT effect);
 void  TurnWaste(int turn, vector<stacks> & stk);
 void  TurnWild(int turn, vector<stacks> & stk);
 int   randStackSelction(vector<stacks> & stk);
@@ -46,20 +36,14 @@ ostream & operator <<
     }
 }
 
-
-
 int 
 main(int argc, char* argv[]){
-        /* Resources */ 
-    vector<stacks> stkVector;
-    vector<STACK_EFFECT> fbTokenVector;
-    int fbTokenNumber = 0;
-    int numTurns      = 0;
-    params parameters = params();
-    
+    /* Game Resources */ 
+    GameSetting          GameResources = GameSetting();
+
     while (true){
-        menu(stkVector, fbTokenVector, fbTokenNumber, numTurns);
-        run_simulation(stkVector, fbTokenVector, fbTokenNumber, numTurns, parameters);
+        menu(GameResources);
+        run_simulation(GameResources);
         cout << "Press any key to simulate again" << endl;
         cout << "Press q to quit" << endl;
 
@@ -70,7 +54,7 @@ main(int argc, char* argv[]){
 }
 
 void 
-menu(std::vector<stacks> & stkVector, std::vector<STACK_EFFECT> & fbTokenVector, int & fbTokenNumber, int & numTurns){
+menu(GameSetting & GameResources){
     try{
         // 1. Get TILEs Type
         cout << "Version 1 Simulation" << endl;
@@ -83,43 +67,53 @@ menu(std::vector<stacks> & stkVector, std::vector<STACK_EFFECT> & fbTokenVector,
         getline(cin, stackTypeStr);
         // Testing Purpose
         if (stackTypeStr.size() == 0)
-            createDefaultStack(stkVector, fbTokenVector);
+            createDefaultStack(GameResources.getstkVector(), 
+                               GameResources.getFbTokenVector());
         else 
-            equipFeedbackToken(stkVector, 
-                               fbTokenVector, 
+            equipFeedbackToken(GameResources.getstkVector(), 
+                               GameResources.getFbTokenVector(), 
                                stackTypeStr);
 
-        if (stkVector.size() != 11){
+        if (GameResources.getstkVector().size() != 11){
             cout << "Please enter 11 stacks" << endl;
             exit(-1);
         }
+
         // 2. Get Feedback Token amount
+        int fbTokenNumber = 0;
         cout << "Please enter the max number of feedback tokens of each kind" << endl;
         (cin >> fbTokenNumber).get();
+        GameResources.setPool(feedBackPool(fbTokenNumber));
+
 
         // 3. Get number of simulation turn
+        int numTurns = 0; 
         cout << "Please enter the number of simulation turns" << endl;
         (cin >> numTurns).get();
+        GameResources.setRound(numTurns);
 
     }catch (exception e){
         cout << "Invalid Input" << endl;
     }
 }
 
-
-void run_simulation(std::vector<stacks> stkVector, 
-                    std::vector<STACK_EFFECT> fbTokenVector,
-                    int & fbTokenReserve, 
-                    int & numTurns, 
-                    params & parameters){
+void 
+run_simulation(GameSetting & GameResources){
 
     int TurnCounter = 0;
     srand(time(nullptr));
-    vector<stacks> stacksChoices;
+    
+    int round                            = GameResources.getRound();
+    vector<stacks> &     stkVector       = GameResources.getstkVector();
+    vector<STACK_EFFECT> fbTokenVector   = GameResources.getFbTokenVector();
+    vector<stacks>       stacksChoices;  
+
+
+
     stacksChoices.push_back(stkVector[0]);
 
     /* Run "numTurns" time simulation */
-    while (TurnCounter++ < numTurns){
+    while (TurnCounter++ < round){
         int counter = 1;
         try{
             while (counter < 12){
@@ -147,39 +141,34 @@ void run_simulation(std::vector<stacks> stkVector,
 
                 cout << counter << " " << feedbackToken << " Use on Stack : " << selectedStack << endl; 
                 // ！3. Handle Effect
-                handle_effect(selectedStack, stkVector, parameters, feedbackToken);
+                handle_effect(selectedStack, GameResources, feedbackToken);
                 counter++;
 
             }
             cout << endl << endl;
             /* Print out round result */
-            equipFeedbackToken(stkVector, fbTokenVector,"");
-            GamePlayDisplay(stkVector, fbTokenVector, parameters, TurnCounter);
+            equipFeedbackToken(stkVector, fbTokenVector, "");
+            GamePlayDisplay(GameResources);
 
         }catch(exception e){
             cout << "Run Simulation Error" << endl;
             cout << e.what() << endl;
         }
-
     }
-
 }
 
 void 
-handle_effect(int stackNo, vector<stacks> & stk, params & parameter, STACK_EFFECT effect){
-
-    // cout << "Effect=" << effect 
-    //  << " | stackNo=" << stackNo 
-    //  << " | stk.size()=" << stk.size() << endl;
-
+handle_effect(int stackNo, GameSetting & GameResources, STACK_EFFECT effect){
+    vector<stacks> & stk = GameResources.getstkVector();
     int cohesion = 0; 
+
     switch (effect){
         case EFFECT_TURN_WILD:
             TurnWild(stackNo, stk);
             break;
         case EFFECT_LOSE_CO:
-            cohesion = parameter.getCohesion();
-            parameter.setCohesion(cohesion - 2);
+            cohesion = GameResources.getParameter().getCohesion();
+            GameResources.getParameter().setCohesion(cohesion - 2);
             break;
         case EFFECT_TURN_WASTE:
             TurnWaste(stackNo, stk);
@@ -191,20 +180,21 @@ handle_effect(int stackNo, vector<stacks> & stk, params & parameter, STACK_EFFEC
     return;
 }
 
-// ! Turn which STACK into STACK_WASTE 
+// ! Turn a STACK into STACK_WASTE 
 void 
 TurnWaste(int turn, vector<stacks>& stk){
     int index = turn -1;
     stk[index].setType(STACK_WASTE);
 }
 
-// ! Turn which STACK into STACK_WILD
+// ! Turn a STACK into STACK_WILD
 void 
 TurnWild(int turn, vector<stacks>& stk){
     int index = turn -1;
     stk[index].setType(STACK_WILD);
 }
 
+// ! Random select a stk from a set of stk and return its position 
 int 
 randStackSelction(vector<stacks> & stk){
     if (stk.size() == 1)
@@ -217,23 +207,19 @@ randStackSelction(vector<stacks> & stk){
     }
 }
 
-void 
-GamePlayDisplay(const vector<stacks> & stk, 
-                const vector<STACK_EFFECT> &feedBackTokensVector,
-                const params & currentGameParams,
-                int round){
+void GamePlayDisplay(GameSetting & GameResource ){
     
     // Display Stack Layout:
-    cout << "ROUND " << round << endl;
+    cout << "ROUND " << GameResource.getRound() << endl;
     cout << "----------------------------------------------------------"<< endl;
     cout << "1. STACK STATE" << endl;
 
-    for (auto e : stk){
+    for (auto e : GameResource.getstkVector()){
         cout << "Stack: " << e.getPosition() << " " << "State: " << e.toString() << endl;
     }
     cout << "----------------------------------------------------------"<< endl;
-    cout << "2. TOTAL FEEDBACK TOKEN: " << feedBackTokensVector.size() << endl;
-    for (auto e : feedBackTokensVector){
+    cout << "2. TOTAL FEEDBACK TOKEN: " << GameResource.getFbTokenVector().size() << endl;
+    for (auto e : GameResource.getFbTokenVector()){
         cout << e << endl;
     }
     cout << "----------------------------------------------------------"<< endl;
@@ -257,13 +243,11 @@ createDefaultStack(vector<stacks> & stkVector, vector<STACK_EFFECT> & fbTokenVec
     };
 }
 
-
 void  
 equipFeedbackToken(vector<stacks> & stkVector, vector<STACK_EFFECT> & fbTokenVector, string input){
-    if (input == ""){
+    if (input == "")
         for (auto e : stkVector)
             fbTokenVector.push_back(STACK_EFFECT(e.getType()));
-    }
     else {
         int counter = 0;
         for (auto e : input){

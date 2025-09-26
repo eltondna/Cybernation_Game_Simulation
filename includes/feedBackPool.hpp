@@ -17,10 +17,11 @@ class feedBackPool{
         int TurnWasteToken;
         int SolveDisruptToken;
     public:
-        feedBackPool(){
+        feedBackPool(int each = 10){
             TurnWildToken = TurnWasteToken = 
-            LoseCohToken = SolveDisruptToken = 10;
+            LoseCohToken = SolveDisruptToken = each;
         };
+
         feedBackPool(int wild, int lose, int waste, int solve):
         TurnWildToken(wild), LoseCohToken(lose), TurnWasteToken(waste),
         SolveDisruptToken(solve){
@@ -42,56 +43,5 @@ class feedBackPool{
         bool drawFromPool(STACK_EFFECT token);
         void putBackToPool(STACK_EFFECT token);
 };
-
-
-bool feedBackPool::drawFromPool(STACK_EFFECT token)
-{
-    switch (token){
-        case EFFECT_TURN_WILD:
-            if (TurnWildToken > 0){
-                --TurnWildToken;
-                return true;
-            }
-            break;
-        case EFFECT_LOSE_CO:
-            if (LoseCohToken > 0){
-                --LoseCohToken;
-                return true;
-            }
-            break;
-        case EFFECT_TURN_WASTE:
-            if (TurnWasteToken > 0){
-                --TurnWasteToken;
-                return true;
-            }
-            break;
-        case EFFECT_SOLVE_DISRUPT:
-            if (SolveDisruptToken > 0){
-                --SolveDisruptToken;
-                return true;
-            }
-            break;
-        default: break;
-    }
-    return false;
-}
-
-void feedBackPool::putBackToPool(STACK_EFFECT token)
-{
-    switch (token){
-        case EFFECT_TURN_WILD:
-            ++TurnWildToken;
-            break;
-        case EFFECT_LOSE_CO:
-            ++LoseCohToken;
-            break;
-        case EFFECT_TURN_WASTE:
-            ++TurnWasteToken;
-            break;
-        case EFFECT_SOLVE_DISRUPT:
-            ++SolveDisruptToken;
-            break;
-    }
-}
 
 #endif

@@ -1,35 +1,5 @@
-#ifndef _STACK_HPP
-#define _STACK_HPP
-#include <string>
-#include "feedBackPool.hpp"
+#include "../includes/stack.hpp"
 
-/* ! Tile Type */ 
-enum STACK_TYPE{
-    STACK_WILD,
-    STACK_WASTE,
-    STACK_DEVA,
-    STACK_DEVB,
-    STACK_UNKNOWN
-};
-
-class stacks{
-    private:
-        STACK_TYPE      type;
-        int             position;
-
-    public:
-        stacks(STACK_TYPE type, int position);
-        std::string     toString();
-        
-        void            setPosition(int pos);
-        int             getPosition();
- 
-        STACK_TYPE      getType();
-        void            setType(STACK_TYPE type);
-
-
-        STACK_EFFECT    getEffect();
-};
 
 STACK_TYPE 
 stacks::getType()
@@ -38,12 +8,12 @@ stacks::getType()
 }
 
 
-inline void stacks::setType(STACK_TYPE type)
+void stacks::setType(STACK_TYPE type)
 {   
     this->type = type;
 }
 
-inline STACK_EFFECT stacks::getEffect()
+STACK_EFFECT stacks::getEffect()
 {
     switch (this->type){
         case STACK_WILD:
@@ -63,7 +33,7 @@ inline STACK_EFFECT stacks::getEffect()
     }
 }
 
-inline stacks::stacks(STACK_TYPE type, int position)
+stacks::stacks(STACK_TYPE type, int position)
 {
     this->type     = type;
     this->position = position;
@@ -86,14 +56,12 @@ stacks::toString()
     }
 }
 
-inline void stacks::setPosition(int pos)
+void stacks::setPosition(int pos)
 {
     this->position = pos;
 }
 
-inline int stacks::getPosition()
+int stacks::getPosition()
 {
     return this->position;
 }
-
-#endif
