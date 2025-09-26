@@ -2,4 +2,4 @@
 *.o
 *.obj
 *.out
-./visualization
+./visualization/*.json

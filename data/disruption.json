@@ -2,6 +2,7 @@
     {
         "name": "HURRICANE",
         "description": "For each affected Stack, turn into waste unless pay 1 cybernation level",
+        "type": "disrupt",
         "target": "Any",
         "effect": "TurnWaste",
         "cost": "Cybernation: -1",
@@ -12,6 +13,7 @@
         "name": "WILDFIRES",
         "description": "Turn stack into waste unless pay 1 cybernation level",
         "target": "Any",
+        "type": "disrupt",
         "effect": "TurnWaste",
         "cost": "Cybernation: -1",
         "victoryImpact": "None",
@@ -20,6 +22,7 @@
     {
         "name": "VOLCANIC ASH",
         "description": "Turn stack into wild unless pay 1 cybernation level",
+        "type": "disrupt",
         "target": "Any",
         "effect": "TurnWild",
         "cost": "Cybernation: -1",
@@ -29,6 +32,7 @@
     {
         "name": "FLOODS",
         "description": "Turn stack into wild unless pay 1 cybernation level",
+        "type": "disrupt",
         "target": "Any",
         "effect": "TurnWild",
         "cost": "Cybernation: -1",
@@ -38,6 +42,7 @@
     {
         "name": "AIR POLLUTION SPIKE",
         "description": "For each developed stack, decrement 2 cohesion",
+        "type": "disrupt",
         "target": "Any",
         "effect": "Cohesion : -2",
         "cost": "Cohesion: -2",
@@ -47,6 +52,7 @@
     {
         "name": "CLIMATE MIGRATION",
         "description": "If the affected Stack is DevA/B, turn into waste and cohension - 1",
+        "type": "disrupt",
         "target": "Any",
         "effect": "Cohesion: -1, TurnWaste",
         "cost": "Cybernation: -1",
@@ -56,6 +62,7 @@
     {
         "name": "ARIDIFICATION",
         "description": "If the affected Stack is DevA/B, turn into waste and cohension - 1",
+        "type": "disrupt",
         "target": "Any",
         "effect": "Cohesion: -1, TurnWaste",
         "cost": "Cybernation: -1",
@@ -65,6 +72,7 @@
     {
         "name": "RISING SEA LEVELS",
         "description": "If the affected Stack is DevA/B, turn into waste and cohension - 1",
+        "type": "disrupt",
         "target": "Any",
         "effect": "Cohesion: -1, TurnWaste",
         "cost": "Cybernation : -1",
@@ -75,6 +83,7 @@
         "name": "TECH-MEDIATED ISOLATION",
         "description": "If Technology > Human Relation, cohesion - 2",
         "target": "Any",
+        "type": "disrupt",
         "effect": "Cohesion: -2",
         "cost": "Cybernation: -1",
         "victoryImpact": "None",
@@ -83,6 +92,7 @@
     {
         "name": "RAMPANT MONOCULTURES",
         "description": "Cannot gain more than 4 environment until the end of turn",
+        "type": "disrupt",
         "target": "Any",
         "effect": "Cap Environment: 4",
         "cost": "HumanRelations: -1, Technology: -1",
@@ -92,6 +102,7 @@
     {
         "name": "GLACIAL MELT",
         "description": "If the selected stack is Wild, flip it -> become waste",
+        "type": "disrupt",
         "target": "Any",
         "effect": "TurnWaste",
         "cost": "Cybernation: -1",
@@ -101,6 +112,7 @@
     {
         "name": "DESERTIFICATION",
         "description": "If the selected stack is Wild, flip it -> become waste",
+        "type": "disrupt",
         "target": "Any",
         "effect": "TurnWaste",
         "cost": "Cybernation: -1",
@@ -110,6 +122,7 @@
     {
         "name": "OVERWHELMING SALINATION",
         "description": "If the selected stack is Wild, flip it -> become waste",
+        "type": "disrupt",
         "target": "Any",
         "effect": "TurnWaste",
         "cost": "Cybernation: -1",
@@ -118,7 +131,8 @@
     },
     {
         "name": "RISING CRIME",
-        "description": "Gain 2 cohesions",
+        "description": "Lose 2 cohesions",
+        "type": "disrupt",
         "target": "Any",
         "effect": "Cohesion: -2",
         "cost": "Cybernation: -1",
@@ -127,7 +141,8 @@
     },
     {
         "name": "RAMPANT DISINFORMATION",
-        "description": "Gain 2 cohesions",
+        "description": "Lose 2 cohesions",
+        "type": "disrupt",
         "target": "Any",
         "effect": "Cohesion: -2",
         "cost": "HumanRelations: -2",
@@ -137,6 +152,7 @@
     {
         "name": "DISEASE OUTBREAK",
         "description": "For each developed stack, decrement 2 cohesion",
+        "type": "disrupt",
         "target": "Any",
         "effect": "Cohesion: -2",
         "cost": "Cybernation: -1",
@@ -146,6 +162,7 @@
     {
         "name": "SOCIETAL SHIFT",
         "description": "Swap Goal",
+        "type": "disrupt",
         "target": "Any",
         "effect": "SwapGoal",
         "cost": "Cybernation : -2",
@@ -155,6 +172,7 @@
     {
         "name": "PARADIGM SHIFT",
         "description": " Discard all cards on the Goal track. Draw a new Goal card and place it on the Community board (its Start effects do not apply).",
+        "type": "disrupt",
         "target": "Any",
         "effect": "DrawGoal",
         "cost": "Cybernation : -2",
@@ -164,6 +182,7 @@
     {
         "name": "COMMUNITY LEADERS",
         "description": "Move 1 people token to a new, unoccupied position or gain 2 HumanRelation",
+        "type": "boost",
         "target": "Any",
         "effect": "Action",
         "cost": "Move ppl | HumanRelation : 2",
@@ -172,7 +191,8 @@
     },
     {
         "name": "TECHNOLOGY BREAKTHROUGH",
-        "description": "You may chhoose to pay 1 HumanRelation and 1 Technology to place a DevA tile on an undeveloped Stack",
+        "description": "You may choose to pay 1 HumanRelation and 1 Technology to place a DevA tile on an undeveloped Stack",
+        "type": "boost",
         "target": "Any",
         "effect": "TurnDevA",
         "cost": "HumanRelation: 1 , 1 Technology: 1",
@@ -182,6 +202,7 @@
     {
         "name": "NEW HORIZONS",
         "description": "Trade 1 resource for 1 resource",
+        "type": "boost",
         "target": "Any",
         "effect": "Trade",
         "cost": "Resources: 1",
@@ -191,6 +212,7 @@
     {
         "name": "FOCUSSED RESEARCH",
         "description": "Foe each developed stack, gain 2 relationships or gain 1 cybernation level",
+        "type": "boost",
         "target": "Any",
         "effect": "Gain",
         "cost": "HumanRelation: + 2 || Cybernation: + 1",
@@ -200,6 +222,7 @@
     {
         "name": "FUTURES THINKING",
         "description": "Gain 2 cybernation level or draw up to 3 Feedback token from the bag. For each token, place it into the bag or discard it",
+        "type": "boost",
         "target": "Any",
         "effect": "Gain",
         "cost": "Cybernation: +2 || Token : + 3",
@@ -210,8 +233,9 @@
         "name": "BLOOM-COVERED PLATEAUS",
         "description": "If affected stack is waste, flip it. In additions, could pay 1 environment to gain 1 cybernation level",
         "target": "Any",
-        "effect": "TurnWild , Trade: [Cybernation : +1 , Environment: -1]",
-        "cost": "Cybernation : +1 , Environment: -1",
+        "type": "boost",
+        "effect": "TurnWild , Optional: [Cybernation : +1 , Environment: -1]",
+        "cost": "",
         "victoryImpact": "Regulation",
         "cancel": "false"
     },
@@ -219,14 +243,16 @@
         "name": "LUSH JUNGLES",
         "description": "For each waste stack , flip it. In additions, could pay 1 environment to gain 1 cybernation level",
         "target": "Any",
-        "effect": "TurnWild , Trade: [Cybernation : +1 , Environment: -1]",
-        "cost": "Cybernation : +1 , Environment: -1",
+        "type": "boost",
+        "effect": "TurnWild , Optional: [Cybernation : +1 , Environment: -1]",
+        "cost": "",
         "victoryImpact": "Regulation",
         "cancel": "false"
     },
     {
         "name": "THRIVING MANGROVES",
         "description": "For each waste stack , flip it. In additions, could pay 1 environment to gain 1 cybernation level",
+        "type": "boost",
         "target": "Any",
         "effect": "TurnWild , Trade: [Cybernation : +1 , Environment: -1]",
         "cost": "Cybernation : +1 , Environment: -1",
@@ -236,6 +262,7 @@
     {
         "name": "REBIRTH OF COMMUNITY",
         "description": "Gain 2 Cohesion, then gain 5 Relationships",
+        "type": "boost",
         "target": "Any",
         "effect": "Cohesion: +2, Resources: + 5",
         "cost": "",
@@ -245,6 +272,7 @@
     {
         "name": "WINDFALL",
         "description": "Gain 10 resources",
+        "type": "boost",
         "target": "Any",
         "effect": "Resoucres: +10",
         "cost": "",
@@ -254,6 +282,7 @@
     {
         "name": "EMPATHY",
         "description": "Gain 2 Cohesion, or ignore cohesion effect for this turn",
+        "type": "boost",
         "target": "Any",
         "effect": "Cohesion: +2 , CohesionEffect = false",
         "cost": "",
@@ -263,6 +292,7 @@
     {
         "name": "BIO-INSPIRED DESIGN",
         "description": "For each waste or wild blocks, gain 1 relation or 1 cybernation level",
+        "type": "boost",
         "target": "Any",
         "effect": "Resources: +1 || CybernationLevel: +1",
         "cost": "",
