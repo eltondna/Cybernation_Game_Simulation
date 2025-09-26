@@ -16,16 +16,17 @@ class feedBackPool{
         int LoseCohToken;
         int TurnWasteToken;
         int SolveDisruptToken;
+        int total;
     public:
         feedBackPool(int each = 10){
             TurnWildToken = TurnWasteToken = 
             LoseCohToken = SolveDisruptToken = each;
+            total = (each << 2);
         };
 
         feedBackPool(int wild, int lose, int waste, int solve):
         TurnWildToken(wild), LoseCohToken(lose), TurnWasteToken(waste),
-        SolveDisruptToken(solve){
-
+        SolveDisruptToken(solve), total(wild + lose + waste + solve){
         };
         ~feedBackPool(){};
         
@@ -42,6 +43,7 @@ class feedBackPool{
 
         bool drawFromPool(STACK_EFFECT token);
         void putBackToPool(STACK_EFFECT token);
+        int getPoolSize(){return total;};
 };
 
 #endif

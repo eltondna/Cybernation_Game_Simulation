@@ -6,5 +6,7 @@
 #include <string>
 #include <ctime> 
 #include "GameSetting.hpp"
+#include <fstream>
+#include "../includes/nlohmann/json.hpp"
 
 #endif

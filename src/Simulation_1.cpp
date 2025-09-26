@@ -1,5 +1,13 @@
 #include "../includes/include.hpp"
+
+
 using namespace std;
+
+
+/* PARAMETER */
+const int MAX_ROUND = 50;
+int VERSION   = 1;
+
 
 /* Terminal Display */
 void menu(GameSetting & GameResources);
@@ -7,16 +15,18 @@ void GamePlayDisplay(GameSetting & GameResource, int roundNum);
 
 /* Interface Function */
 
-/* Main simulation Loop */
+/* Simulation Function */
 void  run_simulation(GameSetting & GameResources);
-
 void  createDefaultStack(vector<stacks> & stkVector, vector<STACK_EFFECT> & fbTokenVector);
 void  equipFeedbackToken(vector<stacks> & stkVector, vector<STACK_EFFECT> & fbTokenVector, string input);
 
+/* Helper Function */
 void  handle_effect(int stackNo, GameSetting & GameResources, STACK_EFFECT effect);
+int   randStackSelction(vector<stacks> & stk);
 void  TurnWaste(int turn, vector<stacks> & stk);
 void  TurnWild(int turn, vector<stacks> & stk);
-int   randStackSelction(vector<stacks> & stk);
+void  OutputToJson(int & version, int & currentRound, GameSetting GameResource);
+
 
 
 /* Debug Function */
@@ -150,6 +160,10 @@ run_simulation(GameSetting & GameResources){
             equipFeedbackToken(stkVector, fbTokenVector, "");
             GamePlayDisplay(GameResources, TurnCounter);
 
+
+            OutputToJson(VERSION, TurnCounter, GameResources);
+            
+
         }catch(exception e){
             cout << "Run Simulation Error" << endl;
             cout << e.what() << endl;
@@ -264,4 +278,35 @@ equipFeedbackToken(vector<stacks> & stkVector, vector<STACK_EFFECT> & fbTokenVec
             }
         }
     }
+}
+
+
+void  OutputToJson(int & version, int & currentRound, GameSetting GameResource){
+    nlohmann::json jStruct;
+    
+    jStruct["version"]    = version;
+    for (auto e : GameResource.getstkVector()){
+        jStruct["board"]["hex"].push_back({
+            {"id", e.getPosition()}, 
+            {"type", e.toString()}
+        });
+    }
+    jStruct["game_state"] = {
+        {"current_round", currentRound},
+        {"max_round",     MAX_ROUND},
+        {"bag_total",     GameResource.getPool().getPoolSize()}
+    };
+    jStruct["tokens"]  = {
+        {"Wilds",  GameResource.getPool().getTurnWildToken()},
+        {"Wastes", GameResource.getPool().getLoseCohToken()},
+        {"DevA",   GameResource.getPool().getTurnWasteToken()},
+        {"DevB",   GameResource.getPool().getSolveDisruptToken()}
+    };
+
+    ofstream jsonFile("visualization.json");
+    if (jsonFile.is_open()){
+        jsonFile << jStruct.dump(4);
+        jsonFile.close();
+    }
+    cout << "JSON written to visualization.json" << endl;
 }
