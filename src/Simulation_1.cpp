@@ -314,7 +314,7 @@ void  OutputToJson(int & version, int & currentRound, GameSetting GameResource){
     jStruct["game_state"] = {
         {"current_round", currentRound},
         {"max_round",     GameResource.getRound()},
-        {"bag_total",     GameResource.getPool().getPoolSize()}
+        {"bag_total",     80 - GameResource.getPool().getPoolSize()}
     };
     jStruct["tokens"]  = {
         {"Wilds",  GameResource.getPool().getTurnWildToken()},
