@@ -150,6 +150,9 @@ run_simulation(GameSetting & GameResources){
                 // ! Stack 1, 8-11 is put back into the bags when resolved
                 if (!(counter == 1 || counter >= 8))
                     fbTokenVector.erase(fbTokenVector.begin() + pos);
+                else
+                    // Put token back to pool for stack 1 and 8-11
+                    GameResources.getPool().putBackToPool(feedbackToken);
                 
                 // ! 2. Place feedback token on the stack top
                 // We want to select a random restricted stack  
@@ -165,6 +168,8 @@ run_simulation(GameSetting & GameResources){
                 cout << counter << " " << feedbackToken << " Use on Stack : " << selectedStack << endl; 
                 // ！3. Handle Effect
                 handle_effect(selectedStack, GameResources, feedbackToken);
+                // ！4. Draw from pool (reduce token count)
+                GameResources.getPool().drawFromPool(feedbackToken);
                 counter++;
 
             }
@@ -308,7 +313,7 @@ void  OutputToJson(int & version, int & currentRound, GameSetting GameResource){
     }
     jStruct["game_state"] = {
         {"current_round", currentRound},
-        {"max_round",     MAX_ROUND},
+        {"max_round",     GameResource.getRound()},
         {"bag_total",     GameResource.getPool().getPoolSize()}
     };
     jStruct["tokens"]  = {
@@ -321,12 +326,12 @@ void  OutputToJson(int & version, int & currentRound, GameSetting GameResource){
     logArray.push_back(jStruct);
 
     if (currentRound == GameResource.getRound()){
-        ofstream jsonFile("visualization.json");
+        ofstream jsonFile("visualization/visualization.json");
         if (jsonFile.is_open()){
             jsonFile << logArray.dump(4);
             jsonFile.close();
         }
-        cout << "JSON written to visualization.json" << endl;
+        cout << "JSON written to visualization/visualization.json" << endl;
     }
 
 }
