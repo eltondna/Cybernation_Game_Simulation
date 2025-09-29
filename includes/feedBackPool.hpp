@@ -43,7 +43,7 @@ class feedBackPool{
 
         bool drawFromPool(STACK_EFFECT token);
         void putBackToPool(STACK_EFFECT token);
-        int getPoolSize(){return total;};
+        int getPoolSize(){return TurnWildToken + LoseCohToken + TurnWasteToken + SolveDisruptToken;};
 };
 
 #endif
