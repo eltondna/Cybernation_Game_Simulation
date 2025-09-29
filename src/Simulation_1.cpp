@@ -230,14 +230,14 @@ TurnWild(int turn, vector<stacks>& stk){
 // ! Random select a stk from a set of stk and return its position 
 int 
 randStackSelction(vector<stacks> & stk){
-    if (stk.size() == 1)
-        return 1;
-    else {
-        int pos = rand() % stk.size();
-        int StackPos = stk[pos].getPosition();
-        stk.erase(stk.begin() + pos);
-        return StackPos;
-    }
+    int pos = 0;
+
+    if (stk.size() != 1)
+        pos = rand() % stk.size();
+        
+    int StackPos = stk[pos].getPosition();
+    stk.erase(stk.begin() + pos);
+    return StackPos;
 }
 
 void 
