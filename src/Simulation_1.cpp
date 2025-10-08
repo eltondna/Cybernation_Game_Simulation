@@ -28,7 +28,6 @@ void  TurnWild(int turn, vector<stacks> & stk);
 void  OutputToJson(int & version, int & currentRound, GameSetting GameResource);
 
 
-
 /* Debug Function */
 ostream & operator << 
 (ostream & os, STACK_EFFECT effect){
@@ -156,7 +155,7 @@ run_simulation(GameSetting & GameResources){
                 
                 // ! 2. Place feedback token on the stack top
                 // We want to select a random restricted stack  
-                int selectedStack   = 1;
+                int selectedStack = 1;
                 // Randomize stack choice to be put on
                 if (counter == 2){
                     stacksChoices = vector<stacks>(stkVector.begin() + 1, stkVector.begin() + 7);
@@ -176,13 +175,12 @@ run_simulation(GameSetting & GameResources){
             cout << endl << endl;
             equipFeedbackToken(stkVector, fbTokenVector, "");
 
-            /* Print out round result */
+            /* ! Print out round result */
             GamePlayDisplay(GameResources, TurnCounter);
 
-
+            /* ! File IO for visualization*/
             OutputToJson(VERSION, TurnCounter, GameResources);
             
-
         }catch(exception e){
             cout << "Run Simulation Error" << endl;
             cout << e.what() << endl;
@@ -302,7 +300,6 @@ equipFeedbackToken(vector<stacks> & stkVector, vector<STACK_EFFECT> & fbTokenVec
 
 void  OutputToJson(int & version, int & currentRound, GameSetting GameResource){
     static nlohmann::json logArray = nlohmann::json::array();
-
     nlohmann::json jStruct;
     jStruct["version"]    = version;
     for (auto e : GameResource.getstkVector()){
@@ -333,5 +330,4 @@ void  OutputToJson(int & version, int & currentRound, GameSetting GameResource){
         }
         cout << "JSON written to visualization/visualization.json" << endl;
     }
-
 }

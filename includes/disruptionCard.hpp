@@ -31,7 +31,6 @@ enum DISRUPTION_EFFECT{
     CapEnv,
     IgnoreCohesionEffect,
     
-
     // ! Metadata
     SwapGoal,
     DrawGoal,
@@ -41,19 +40,19 @@ enum DISRUPTION_EFFECT{
 
 class disruptionCard{
 private:
-    std::string name;
-    std::string des;
-    DISRUPTION_TYPE type;
+    std::string c_name;
+    std::string c_des;
+    DISRUPTION_TYPE c_type;
 
-    std::vector<int> stackTarget;
-    std::vector<std::pair<DISRUPTION_EFFECT,int>> effect;
-    std::vector<std::pair<DISRUPTION_EFFECT,int>> cancelCost;
+    std::vector<int> c_stackTarget;
+    std::vector<std::pair<DISRUPTION_EFFECT,int>> c_effect;
+    std::vector<std::pair<DISRUPTION_EFFECT,int>> c_cancelCost;
 
-    std::vector<STACK_TYPE> stackCondition;
-    std::vector<CYBER_PARAMETER> relationshipCondition;
+    std::vector<STACK_TYPE> c_stackCondition;
+    std::vector<CYBER_PARAMETER> c_relationshipCondition;
     
-    bool cond;
-    bool cancel;
+    bool c_cond;
+    bool c_cancel;
 
 public:
     disruptionCard(std::string name, std::string des, DISRUPTION_TYPE type, 
@@ -67,7 +66,14 @@ public:
     ~disruptionCard();;
 
     // ! Only Getter is needed
-    
+    std::string                                     getCardName();
+    std::string                                     getCardDescription();
+    DISRUPTION_TYPE                                 getCardDisruptionType();
+    std::vector<int>                                getCardStackTarget();
+    std::vector<std::pair<DISRUPTION_EFFECT,int>>   getCardEffect();
+    std::vector<std::pair<DISRUPTION_EFFECT,int>>   getCancelCost();
+    std::vector<STACK_TYPE>                         getStackCondition();
+    std::vector<CYBER_PARAMETER>                    getRelationshipCondition();
 
 };
 

@@ -9,7 +9,6 @@ enum CYBER_PARAMETER{
     TECHNOLOGY
 };
 
-
 class params{
     private:
         int cohesion         = 10;
