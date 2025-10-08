@@ -1,5 +1,4 @@
 #include "../includes/disruptionCard.hpp"
-#include "disruptionCard.hpp"
 
 
 disruptionCard::disruptionCard(std::string name, 
