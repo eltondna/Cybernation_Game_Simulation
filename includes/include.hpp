@@ -6,6 +6,7 @@
 #include <string>
 #include <ctime> 
 #include "GameSetting.hpp"
+#include "disruptionCard.hpp"
 #include <fstream>
 #include "../includes/nlohmann/json.hpp"
 

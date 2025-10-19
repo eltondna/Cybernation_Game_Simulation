@@ -22,6 +22,7 @@ void  equipFeedbackToken(vector<stacks> & stkVector, vector<STACK_EFFECT> & fbTo
 
 /* Helper Function */
 void  handle_effect(int stackNo, GameSetting & GameResources, STACK_EFFECT effect);
+void  handleDisruptionCard(int stackNo, GameSetting & GameResources);
 int   randStackSelction(vector<stacks> & stk);
 void  TurnWaste(int turn, vector<stacks> & stk);
 void  TurnWild(int turn, vector<stacks> & stk);
@@ -66,8 +67,36 @@ main(int argc, char* argv[]){
 void 
 menu(GameSetting & GameResources){
     try{
+        // 0. Get Version
+        cout << "Please select version:" << endl;
+        cout << "1 - Version 1 (Basic version)" << endl;
+        cout << "2 - Version 2 (With disruption cards)" << endl;
+        cout << "Enter version number (1 or 2): ";
+        
+        string versionInput;
+        getline(cin, versionInput);
+        
+        try{
+            int version = stoi(versionInput);
+            if (version == 2){
+                VERSION = 2;
+                cout << "Version 2 selected - With disruption cards enabled" << endl;
+                // Load disruption cards
+                if (!GameResources.getDisruptionManager().loadCardsFromFile("data/disruption.json")){
+                    cout << "Warning: Failed to load disruption cards, using Version 1 mode" << endl;
+                    VERSION = 1;
+                }
+            } else {
+                VERSION = 1;
+                cout << "Version 1 selected - Basic version" << endl;
+            }
+        } catch (const std::exception& e){
+            cout << "Invalid input, using default version 1" << endl;
+            VERSION = 1;
+        }
+        
         // 1. Get TILEs Type
-        cout << "Version 1 Simulation" << endl;
+        cout << "Version " << VERSION << " Simulation" << endl;
         cout << "Please Enter Stack type in order (1 : Inner Stack ... 11: Last Outer Stack)" << endl;
         cout << "(Separate with whitespace)" << endl;
         cout << "Or enter nothing for random stack" << endl;
@@ -208,6 +237,7 @@ handle_effect(int stackNo, GameSetting & GameResources, STACK_EFFECT effect){
             break;
         // Need Disrupt Card
         case EFFECT_SOLVE_DISRUPT:
+            handleDisruptionCard(stackNo, GameResources);
             break;
     }
     return;
@@ -271,15 +301,13 @@ createDefaultStack(vector<stacks> & stkVector, vector<STACK_EFFECT> & fbTokenVec
         {STACK_TYPE::STACK_WILD, 1}   , {STACK_TYPE::STACK_WASTE, 2}, {STACK_TYPE::STACK_WILD, 3} , 
         {STACK_TYPE::STACK_WASTE, 4}  , {STACK_TYPE::STACK_WILD, 5} , {STACK_TYPE::STACK_WASTE, 6}, 
         {STACK_TYPE::STACK_WILD, 7}   , {STACK_TYPE::STACK_WASTE, 8}, {STACK_TYPE::STACK_WILD, 9} , 
-        {STACK_TYPE::STACK_WASTE, 10} , {STACK_TYPE::STACK_DEVA, 11}
+        {STACK_TYPE::STACK_WASTE, 10} , {STACK_TYPE::STACK_DEVB, 11}
     };
 
-    fbTokenVector = {
-        {STACK_EFFECT::EFFECT_TURN_WILD}, {STACK_EFFECT::EFFECT_LOSE_CO}  , {STACK_EFFECT::EFFECT_TURN_WILD},
-        {STACK_EFFECT::EFFECT_LOSE_CO}  , {STACK_EFFECT::EFFECT_TURN_WILD}, {STACK_EFFECT::EFFECT_LOSE_CO}  ,
-        {STACK_EFFECT::EFFECT_TURN_WILD}, {STACK_EFFECT::EFFECT_LOSE_CO}  , {STACK_EFFECT::EFFECT_TURN_WILD}, 
-        {STACK_EFFECT::EFFECT_LOSE_CO}  , {STACK_EFFECT::EFFECT_TURN_WASTE}
-    };
+    // Generate feedback tokens based on stack types
+    for (auto e : stkVector){
+        fbTokenVector.push_back(e.getEffect());
+    }
 }
 
 void  
@@ -334,4 +362,53 @@ void  OutputToJson(int & version, int & currentRound, GameSetting GameResource){
         cout << "JSON written to visualization/visualization.json" << endl;
     }
 
+}
+
+// ! Handle Disruption Card (Version 2)
+void 
+handleDisruptionCard(int stackNo, GameSetting & GameResources){
+    // Check if deck is empty
+    if (GameResources.getDisruptionManager().isDeckEmpty()){
+        cout << "Disruption card deck is empty, cannot draw card" << endl;
+        return;
+    }
+    
+    // Draw a disruption card
+    DisruptionCard card = GameResources.getDisruptionManager().drawCard();
+    cout << "Draw disruption card: " << card.getName() << endl;
+    
+    // Check if card has tile change effects
+    if (!card.hasTileChangeEffect()){
+        cout << "Card has no tile change effects, nothing happens" << endl;
+        return;
+    }
+    
+    // Get target stacks
+    vector<int> targets = card.getTarget();
+    vector<stacks> & stk = GameResources.getstkVector();
+    
+    // Apply effects to each target stack
+    for (int targetId : targets){
+        // Ensure target stack ID is valid
+        if (targetId >= 1 && targetId <= 11){
+            int stackIndex = targetId - 1; // Convert to 0-based index
+            
+            // Apply each effect
+            for (auto effect : card.getEffects()){
+                switch (effect){
+                    case DISRUPTION_TURN_WILD:
+                        cout << "Convert stack " << targetId << " to WILD" << endl;
+                        TurnWild(targetId, stk);
+                        break;
+                    case DISRUPTION_TURN_WASTE:
+                        cout << "Convert stack " << targetId << " to WASTE" << endl;
+                        TurnWaste(targetId, stk);
+                        break;
+                    case DISRUPTION_OTHER:
+                        // Ignore other effects
+                        break;
+                }
+            }
+        }
+    }
 }
