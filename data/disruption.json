@@ -1,135 +1,218 @@
 [
   {
-    "name": "HURRICANE",
+    "name": "HURRICANE_1",
     "description": "For each affected Stack, turn into waste unless pay 1 cybernation level",
     "type": "disrupt",
-    "stackTarget": [1,3,6,9,11],
-    "effect": ["TurnWaste"],
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      1,
+      2,
+      6,
+      9,
+      11
+    ],
+    "effect": [
+      "TurnWaste"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
   {
-    "name": "HURRICANE",
+    "name": "HURRICANE_2",
     "description": "For each affected Stack, turn into waste unless pay 1 cybernation level",
     "type": "disrupt",
-    "stackTarget": [1,4,7,8,10],
-    "effect": ["TurnWaste"],
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      1,
+      4,
+      7,
+      8,
+      10
+    ],
+    "effect": [
+      "TurnWaste"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
-
-
   {
-    "name": "WILDFIRES",
+    "name": "WILDFIRES_1",
     "description": "Turn stack into waste unless pay 1 cybernation level",
     "type": "disrupt",
-    "stackTarget": [1,3,4,5],
-    "effect": ["TurnWaste"],
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      1,
+      3,
+      4,
+      5
+    ],
+    "effect": [
+      "TurnWaste"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
   {
-    "name": "WILDFIRES",
+    "name": "WILDFIRES_2",
     "description": "Turn stack into waste unless pay 1 cybernation level",
     "type": "disrupt",
-    "stackTarget": [1,2,6,7],
-    "effect": ["TurnWaste"],
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      1,
+      2,
+      6,
+      7
+    ],
+    "effect": [
+      "TurnWaste"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
-
   {
-    "name": "VOLCANIC ASH",
+    "name": "VOLCANIC_ASH_1",
     "description": "Turn stack into wild unless pay 1 cybernation level",
     "type": "disrupt",
-    "stackTarget": [1,6,7,8,11],
-    "effect": ["TurnWild"],
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      1,
+      6,
+      7,
+      8,
+      11
+    ],
+    "effect": [
+      "TurnWild"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
-
   {
-    "name": "VOLCANIC ASH",
+    "name": "VOLCANIC_ASH_2",
     "description": "Turn stack into wild unless pay 1 cybernation level",
     "type": "disrupt",
-    "stackTarget": [1,4,5,9,10],
-    "effect": ["TurnWild"],
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      1,
+      3,
+      4,
+      9,
+      10
+    ],
+    "effect": [
+      "TurnWild"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
-
-
   {
-    "name": "FLOODS",
+    "name": "FLOODS_1",
     "description": "Turn stack into wild unless pay 1 cybernation level",
     "type": "disrupt",
-    "stackTarget": [1,2,3,5],
-    "effect": ["TurnWild"],
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      5
+    ],
+    "effect": [
+      "TurnWild"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
   {
-    "name": "FLOODS",
+    "name": "FLOODS_2",
     "description": "Turn stack into wild unless pay 1 cybernation level",
     "type": "disrupt",
-    "stackTarget": [1,4,6,7],
-    "effect": ["TurnWild"],
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      1,
+      4,
+      6,
+      7
+    ],
+    "effect": [
+      "TurnWild"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
   {
-    "name": "AIR POLLUTION SPIKE",
+    "name": "AIR_POLLUTION_SPIKE",
     "description": "For each developed stack, decrement 2 cohesion",
     "type": "disrupt",
-    "stackTarget": [1,2,3,4,5,6,7,8,9,10,11],
-    "effect": ["Co:-2"],
-    "stackCondition": {
-      "field": "state",
-      "op": "in",
-      "value": ["DevA", "DevB"]
-    },
-    "cost": ["Co:-2"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:-2"
+    ],
+    "cost": [
+      "Co:-2"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "Regulation",
     "cancel": true
   },
   {
-    "name": "CLIMATE MIGRATION",
+    "name": "CLIMATE_MIGRATION",
     "description": "If the affected Stack is DevA/B, turn into waste and cohesion -1",
     "type": "disrupt",
-    "stackTarget": [1],
-    "effect": ["Co:-1", "TurnWaste"],
-    "stackCondition": {
-      "field": "state",
-      "op": "in",
-      "value": ["DevA", "DevB"]
-    },
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      1
+    ],
+    "effect": [
+      "Co:-1",
+      "TurnWaste"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "and",
     "optional": {},
     "victoryImpact": "None",
@@ -139,77 +222,175 @@
     "name": "ARIDIFICATION",
     "description": "If the affected Stack is DevA/B, turn into waste and cohesion -1",
     "type": "disrupt",
-    "stackTarget": [2,3,4,5,6,7],
-    "effect": ["Co:-1", "TurnWaste"],
-    "stackCondition": {
-      "field": "state",
-      "op": "in",
-      "value": ["DevA", "DevB"]
-    },
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "effect": [
+      "Co:-1",
+      "TurnWaste"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "and",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
   {
-    "name": "RISING SEA LEVELS",
+    "name": "RISING_SEA_LEVELS",
     "description": "If the affected Stack is DevA/B, turn into waste and cohesion -1",
     "type": "disrupt",
-    "stackTarget": [8,9,10,11],
-    "effect": ["Co:-1", "TurnWaste"],
-    "stackCondition": {
-      "field": "state",
-      "op": "in",
-      "value": ["DevA", "DevB"]
-    },
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:-1",
+      "TurnWaste"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "and",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
   {
-    "name": "TECH-MEDIATED ISOLATION",
+    "name": "TECH_MEDIATED_ISOLATION_1",
     "description": "If Technology > Human Relation, cohesion -2",
     "type": "disrupt",
-    "stackTarget": [],
-    "effect": ["Co:-2"],
-    "RelationshipCondition": {
-      "LHS": "Technology",
-      "op": ">",
-      "RHS": "HumanRelation"
-    },
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:-2"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
   {
-    "name": "RAMPANT MONOCULTURES",
+    "name": "TECH_MEDIATED_ISOLATION_2",
+    "description": "If Technology > Human Relation, cohesion -2",
+    "type": "disrupt",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:-2"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
+    "cond": "",
+    "optional": {},
+    "victoryImpact": "None",
+    "cancel": true
+  },
+  {
+    "name": "RAMPANT_MONOCULTURES_1",
     "description": "Cannot gain more than 4 environment until the end of turn",
     "type": "disrupt",
-    "stackTarget": [],
-    "effect": ["Cap Env: 4"],
-    "cost": ["HR:-1", "Tech:-1"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Cap Env: 4"
+    ],
+    "cost": [
+      "HR:-1",
+      "Tech:-1"
+    ],
     "cond": "and",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
   {
-    "name": "GLACIAL MELT",
+    "name": "RAMPANT_MONOCULTURES_2",
+    "description": "Cannot gain more than 4 environment until the end of turn",
+    "type": "disrupt",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Cap Env: 4"
+    ],
+    "cost": [
+      "HR:-1",
+      "Tech:-1"
+    ],
+    "cond": "and",
+    "optional": {},
+    "victoryImpact": "None",
+    "cancel": true
+  },
+  {
+    "name": "GLACIAL_MELT",
     "description": "If the selected stack is Wild, flip it -> become waste",
     "type": "disrupt",
-    "stackTarget": [1],
-    "effect": ["TurnWaste"],
-    "stackCondition": {
-      "field": "state",
-      "op": "in",
-      "value": ["Wild"]
-    },
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      1
+    ],
+    "effect": [
+      "TurnWaste"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "Regulation",
@@ -219,14 +400,20 @@
     "name": "DESERTIFICATION",
     "description": "If the selected stack is Wild, flip it -> become waste",
     "type": "disrupt",
-    "stackTarget": [2,3,4,5,6,7],
-    "effect": ["TurnWaste"],
-    "stackCondition": {
-      "field": "state",
-      "op": "in",
-      "value": ["Wild"]
-    },
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "effect": [
+      "TurnWaste"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "Regulation",
@@ -236,90 +423,268 @@
     "name": "OVERWHELMING SALINATION",
     "description": "If the selected stack is Wild, flip it -> become waste",
     "type": "disrupt",
-    "stackTarget": [8,9,10,11],
-    "effect": ["TurnWaste"],
-    "stackCondition": {
-      "field": "state",
-      "op": "in",
-      "value": ["Wild"]
-    },
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "TurnWaste"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "Regulation",
     "cancel": true
   },
   {
-    "name": "RISING CRIME",
+    "name": "RISING_CRIME_1",
     "description": "Lose 2 cohesion",
     "type": "disrupt",
-    "stackTarget": [],
-    "effect": ["Co:-2"],
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:-2"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "Amplification",
     "cancel": true
   },
   {
-    "name": "RAMPANT DISINFORMATION",
+    "name": "RISING_CRIME_2",
     "description": "Lose 2 cohesion",
     "type": "disrupt",
-    "stackTarget": [],
-    "effect": ["Co:-2"],
-    "cost": ["HR:-2"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:-2"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "Amplification",
     "cancel": true
   },
   {
-    "name": "DISEASE OUTBREAK",
+    "name": "RAMPANT_DISINFORMATION_1",
+    "description": "Lose 2 cohesion",
+    "type": "disrupt",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:-2"
+    ],
+    "cost": [
+      "HR:-2"
+    ],
+    "cond": "",
+    "optional": {},
+    "victoryImpact": "Amplification",
+    "cancel": true
+  },
+  {
+    "name": "RAMPANT_DISINFORMATION_2",
+    "description": "Lose 2 cohesion",
+    "type": "disrupt",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:-2"
+    ],
+    "cost": [
+      "HR:-2"
+    ],
+    "cond": "",
+    "optional": {},
+    "victoryImpact": "Amplification",
+    "cancel": true
+  },
+  {
+    "name": "DISEASE_OUTBREAK",
     "description": "For each developed stack, decrement 2 cohesion",
     "type": "disrupt",
-    "stackTarget": [1,2,3,4,5,6,7,8,9,10,11],
-    "effect": ["Co:-2"],
-    "stackCondition": {
-      "field": "state",
-      "op": "in",
-      "value": ["DevA","DevB"]
-    },
-    "cost": ["Cy:-1"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:-2"
+    ],
+    "cost": [
+      "Cy:-1"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
   {
-    "name": "SOCIETAL SHIFT",
+    "name": "SOCIETAL_SHIFT_1",
     "description": "Swap Goal",
     "type": "disrupt",
-    "stackTarget": [],
-    "effect": ["SwapGoal"],
-    "cost": ["Cy:-2"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "SwapGoal"
+    ],
+    "cost": [
+      "Cy:-2"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
   {
-    "name": "PARADIGM SHIFT",
+    "name": "SOCIETAL_SHIFT_2",
+    "description": "Swap Goal",
+    "type": "disrupt",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "SwapGoal"
+    ],
+    "cost": [
+      "Cy:-2"
+    ],
+    "cond": "",
+    "optional": {},
+    "victoryImpact": "None",
+    "cancel": true
+  },
+  {
+    "name": "PARADIGM_SHIFT",
     "description": "Discard all cards on the Goal track. Draw a new Goal card and place it on the Community board (its Start effects do not apply).",
     "type": "disrupt",
-    "stackTarget": [],
-    "effect": ["DrawGoal"],
-    "cost": ["Cy:-2"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "DrawGoal"
+    ],
+    "cost": [
+      "Cy:-2"
+    ],
     "cond": "",
     "optional": {},
     "victoryImpact": "None",
     "cancel": true
   },
   {
-    "name": "COMMUNITY LEADERS",
+    "name": "COMMUNITY_LEADERS_1",
     "description": "Move 1 people token to a new, unoccupied position or gain 2 HumanRelation",
     "type": "boost",
-    "stackTarget": [],
-    "effect": ["HR:+2", "Move ppl"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Move ppl",
+      "HR:+2"
+    ],
     "cost": [],
     "cond": "or",
     "optional": {},
@@ -327,23 +692,110 @@
     "cancel": false
   },
   {
-    "name": "TECHNOLOGY BREAKTHROUGH",
+    "name": "COMMUNITY_LEADERS_2",
+    "description": "Move 1 people token to a new, unoccupied position or gain 2 HumanRelation",
+    "type": "boost",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Move ppl",
+      "HR:+2"
+    ],
+    "cost": [],
+    "cond": "or",
+    "optional": {},
+    "victoryImpact": "Regulation",
+    "cancel": false
+  },
+  {
+    "name": "TECHNOLOGY_BREAKTHROUGH_1",
     "description": "You may choose to pay 1 HumanRelation and 1 Technology to place a DevA tile on an undeveloped Stack",
     "type": "boost",
-    "stackTarget": [],
-    "effect": ["TurnDevA"],
-    "cost": ["HR:-1", "Tech:-1"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "TurnDevA"
+    ],
+    "cost": [
+      "HR:-1",
+      "Tech:-1"
+    ],
     "cond": "and",
     "optional": {},
     "victoryImpact": "None",
     "cancel": false
   },
   {
-    "name": "NEW HORIZONS",
+    "name": "TECHNOLOGY_BREAKTHROUGH_2",
+    "description": "You may choose to pay 1 HumanRelation and 1 Technology to place a DevA tile on an undeveloped Stack",
+    "type": "boost",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "TurnDevA"
+    ],
+    "cost": [
+      "HR:-1",
+      "Tech:-1"
+    ],
+    "cond": "and",
+    "optional": {},
+    "victoryImpact": "None",
+    "cancel": false
+  },
+  {
+    "name": "NEW_HORIZONS_1",
     "description": "Trade 1 resource for 1 resource",
     "type": "boost",
-    "stackTarget": [],
-    "effect": ["Trade:1"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Trade:1"
+    ],
     "cost": [],
     "cond": "",
     "optional": {},
@@ -351,16 +803,78 @@
     "cancel": false
   },
   {
-    "name": "FOCUSSED RESEARCH",
-    "description": "For each developed stack, gain 2 relationships of your choice or gain 1 cybernation level",
+    "name": "NEW_HORIZONS_2",
+    "description": "Trade 1 resource for 1 resource",
     "type": "boost",
-    "stackTarget": [],
-    "effect": ["Resources:+2", "Cy:+1"],
-    "stackCondition": {
-      "field": "state",
-      "op": "in",
-      "value": ["DevA", "DevB"]
-    },
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Trade:1"
+    ],
+    "cost": [],
+    "cond": "",
+    "optional": {},
+    "victoryImpact": "Amplification",
+    "cancel": false
+  },
+  {
+    "name": "NEW_HORIZONS_3",
+    "description": "Trade 1 resource for 1 resource",
+    "type": "boost",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Trade:1"
+    ],
+    "cost": [],
+    "cond": "",
+    "optional": {},
+    "victoryImpact": "Amplification",
+    "cancel": false
+  },
+  {
+    "name": "FOCUSSED_RESEARCH_1",
+    "description": "For each developed stack, gain 2 relationships or gain 1 cybernation level",
+    "type": "boost",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "HR:+2",
+      "Cy:+1"
+    ],
     "cost": [],
     "cond": "or",
     "optional": {},
@@ -368,11 +882,53 @@
     "cancel": false
   },
   {
-    "name": "FUTURES THINKING",
+    "name": "FOCUSSED_RESEARCH_2",
+    "description": "For each developed stack, gain 2 relationships or gain 1 cybernation level",
+    "type": "boost",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "HR:+2",
+      "Cy:+1"
+    ],
+    "cost": [],
+    "cond": "or",
+    "optional": {},
+    "victoryImpact": "None",
+    "cancel": false
+  },
+  {
+    "name": "FUTURES_THINKING_1",
     "description": "Gain 2 cybernation level or draw up to 3 Feedback token from the bag. For each token, place it into the bag or discard it",
     "type": "boost",
-    "stackTarget": [],
-    "effect": ["Cy:+2", "Token:+3"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Cy:+2",
+      "Token:+3"
+    ],
     "cost": [],
     "cond": "or",
     "optional": {},
@@ -380,62 +936,184 @@
     "cancel": false
   },
   {
-    "name": "BLOOM-COVERED PLATEAUS",
+    "name": "FUTURES_THINKING_2",
+    "description": "Gain 2 cybernation level or draw up to 3 Feedback token from the bag. For each token, place it into the bag or discard it",
+    "type": "boost",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Cy:+2",
+      "Token:+3"
+    ],
+    "cost": [],
+    "cond": "or",
+    "optional": {},
+    "victoryImpact": "None",
+    "cancel": false
+  },
+  {
+    "name": "FUTURES_THINKING_3",
+    "description": "Gain 2 cybernation level or draw up to 3 Feedback token from the bag. For each token, place it into the bag or discard it",
+    "type": "boost",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Cy:+2",
+      "Token:+3"
+    ],
+    "cost": [],
+    "cond": "or",
+    "optional": {},
+    "victoryImpact": "None",
+    "cancel": false
+  },
+  {
+    "name": "FUTURES_THINKING_4",
+    "description": "Gain 2 cybernation level or draw up to 3 Feedback token from the bag. For each token, place it into the bag or discard it",
+    "type": "boost",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Cy:+2",
+      "Token:+3"
+    ],
+    "cost": [],
+    "cond": "or",
+    "optional": {},
+    "victoryImpact": "None",
+    "cancel": false
+  },
+  {
+    "name": "BLOOM_COVERED_PLATEAUS",
     "description": "If affected stack is waste, flip it. In addition, may pay 1 environment to gain 1 cybernation level",
     "type": "boost",
-    "stackTarget": [1],
-    "effect": ["TurnWild"],
-    "stackCondition": {
-      "field": "state",
-      "op": "in",
-      "value": ["Waste"]
-    },
+    "stackTarget": [
+      1
+    ],
+    "effect": [
+      "TurnWild"
+    ],
     "cost": [],
     "cond": "",
-    "optional": { "cost": ["Env:-1"], "gain": ["Cy:+1"] },
+    "optional": {
+      "cost": [
+        "Env:-1"
+      ],
+      "gain": [
+        "Cy:+1"
+      ]
+    },
     "victoryImpact": "Regulation",
     "cancel": false
   },
   {
-    "name": "LUSH JUNGLES",
+    "name": "LUSH_JUNGLES",
     "description": "For each waste stack, flip it. In addition, may pay 1 environment to gain 1 cybernation level",
     "type": "boost",
-    "stackTarget": [2,3,4,5,6,7],
-    "effect": ["TurnWild"],
-    "stackCondition": {
-      "field": "state",
-      "op": "in",
-      "value": ["Waste"]
-    },
+    "stackTarget": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "effect": [
+      "TurnWild"
+    ],
     "cost": [],
     "cond": "",
-    "optional": { "cost": ["Env:-1"], "gain": ["Cy:+1"] },
+    "optional": {
+      "cost": [
+        "Env:-1"
+      ],
+      "gain": [
+        "Cy:+1"
+      ]
+    },
     "victoryImpact": "Regulation",
     "cancel": false
   },
   {
-    "name": "THRIVING MANGROVES",
+    "name": "THRIVING_MANGROVES",
     "description": "For each waste stack, flip it. In addition, may pay 1 environment to gain 1 cybernation level",
     "type": "boost",
-    "stackTarget": [8,9,10,11],
-    "effect": ["TurnWild"],
-    "stackCondition": {
-      "field": "state",
-      "op": "in",
-      "value": ["Waste"]
-    },
+    "stackTarget": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "TurnWild"
+    ],
     "cost": [],
     "cond": "",
-    "optional": { "cost": ["Env:-1"], "gain": ["Cy:+1"] },
+    "optional": {
+      "cost": [
+        "Env:-1"
+      ],
+      "gain": [
+        "Cy:+1"
+      ]
+    },
     "victoryImpact": "Regulation",
     "cancel": false
   },
   {
-    "name": "REBIRTH OF COMMUNITY",
+    "name": "REBIRTH_OF_COMMUNITY_1",
     "description": "Gain 2 Cohesion, then gain 5 Relationships",
     "type": "boost",
-    "stackTarget": [],
-    "effect": ["Co:+2", "HR:+5"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:+2",
+      "HR:+5"
+    ],
     "cost": [],
     "cond": "and",
     "optional": {},
@@ -443,11 +1121,52 @@
     "cancel": false
   },
   {
-    "name": "WINDFALL",
+    "name": "REBIRTH_OF_COMMUNITY_2",
+    "description": "Gain 2 Cohesion, then gain 5 Relationships",
+    "type": "boost",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:+2",
+      "HR:+5"
+    ],
+    "cost": [],
+    "cond": "and",
+    "optional": {},
+    "victoryImpact": "None",
+    "cancel": false
+  },
+  {
+    "name": "WINDFALL_1",
     "description": "Gain 10 resources",
     "type": "boost",
-    "stackTarget": [],
-    "effect": ["Resources:+10"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Resources:+10"
+    ],
     "cost": [],
     "cond": "",
     "optional": {},
@@ -455,11 +1174,52 @@
     "cancel": false
   },
   {
-    "name": "EMPATHY",
+    "name": "WINDFALL_2",
+    "description": "Gain 10 resources",
+    "type": "boost",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Resources:+10"
+    ],
+    "cost": [],
+    "cond": "",
+    "optional": {},
+    "victoryImpact": "Regulation",
+    "cancel": false
+  },
+  {
+    "name": "EMPATHY_1",
     "description": "Gain 2 Cohesion, or ignore cohesion effect for this turn",
     "type": "boost",
-    "stackTarget": [],
-    "effect": ["Co:+2", "IgnoreCohesionEffect"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:+2",
+      "IgnoreCohesionEffect"
+    ],
     "cost": [],
     "cond": "or",
     "optional": {},
@@ -467,16 +1227,107 @@
     "cancel": false
   },
   {
-    "name": "BIO-INSPIRED DESIGN",
+    "name": "EMPATHY_2",
+    "description": "Gain 2 Cohesion, or ignore cohesion effect for this turn",
+    "type": "boost",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:+2",
+      "IgnoreCohesionEffect"
+    ],
+    "cost": [],
+    "cond": "or",
+    "optional": {},
+    "victoryImpact": "None",
+    "cancel": false
+  },
+  {
+    "name": "EMPATHY_3",
+    "description": "Gain 2 Cohesion, or ignore cohesion effect for this turn",
+    "type": "boost",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "Co:+2",
+      "IgnoreCohesionEffect"
+    ],
+    "cost": [],
+    "cond": "or",
+    "optional": {},
+    "victoryImpact": "None",
+    "cancel": false
+  },
+  {
+    "name": "BIO_INSPIRED_DESIGN_1",
     "description": "For each waste or wild block, gain 1 relation or 1 cybernation level",
     "type": "boost",
-    "stackTarget": [1,2,3,4,5,6,7,8,9,10,11],
-    "stackCondition": {
-      "field": "state",
-      "op": "in",
-      "value": ["Waste", "Wild"]
-    },
-    "effect": ["HR:+1", "Cy:+1"],
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "HR:+1",
+      "Cy:+1"
+    ],
+    "cost": [],
+    "cond": "or",
+    "optional": {},
+    "victoryImpact": "Amplification",
+    "cancel": false
+  },
+  {
+    "name": "BIO_INSPIRED_DESIGN_2",
+    "description": "For each waste or wild block, gain 1 relation or 1 cybernation level",
+    "type": "boost",
+    "stackTarget": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "effect": [
+      "HR:+1",
+      "Cy:+1"
+    ],
     "cost": [],
     "cond": "or",
     "optional": {},

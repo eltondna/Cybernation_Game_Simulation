@@ -7,6 +7,7 @@ GameSetting::GameSetting()
     this->round         = 1;
     this->stkVector     = std::vector<stacks>();
     this->fbTokenVector = std::vector<STACK_EFFECT>();
+    this->disruptionManager = disruptionCardManager();
 }
 
 GameSetting::GameSetting(feedBackPool _pool, 
